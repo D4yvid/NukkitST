@@ -7,14 +7,9 @@ import cn.nukkit.plugin.PluginBase;
  */
 public class PluginCertificateTask {
 
-    private final PluginBase plugin;
+  private final PluginBase plugin;
 
-    public PluginCertificateTask(PluginBase plugin) {
-        this.plugin = plugin;
-    }
+  public PluginCertificateTask(PluginBase plugin) { this.plugin = plugin; }
 
-    public boolean run() {
-        return false;
-    }
-
+  public boolean run() { return false; }
 }

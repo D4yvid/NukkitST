@@ -8,15 +8,9 @@ import cn.nukkit.network.protocol.LevelEventPacket;
  */
 public class ExperienceOrbSound extends GenericSound {
 
-    public ExperienceOrbSound(Vector3 pos) {
-        this(pos, 0);
-    }
+  public ExperienceOrbSound(Vector3 pos) { this(pos, 0); }
 
-    public ExperienceOrbSound(
-            Vector3 pos,
-            float pitch
-    ) {
-        super(pos, LevelEventPacket.EVENT_SOUND_EXPERIENCE_ORB, pitch);
-    }
-
+  public ExperienceOrbSound(Vector3 pos, float pitch) {
+    super(pos, LevelEventPacket.EVENT_SOUND_EXPERIENCE_ORB, pitch);
+  }
 }

@@ -7,8 +7,5 @@ import cn.nukkit.math.Vector3;
  */
 public class PortalParticle extends GenericParticle {
 
-    public PortalParticle(Vector3 pos) {
-        super(pos, Particle.TYPE_PORTAL);
-    }
-
+  public PortalParticle(Vector3 pos) { super(pos, Particle.TYPE_PORTAL); }
 }

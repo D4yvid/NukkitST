@@ -5,34 +5,24 @@ package cn.nukkit.item;
  */
 public class ItemHoeDiamond extends ItemTool {
 
-    public ItemHoeDiamond() {
-        this(0, 1);
-    }
+  public ItemHoeDiamond() { this(0, 1); }
 
-    public ItemHoeDiamond(Integer meta) {
-        this(meta, 1);
-    }
+  public ItemHoeDiamond(Integer meta) { this(meta, 1); }
 
-    public ItemHoeDiamond(
-            Integer meta,
-            int count
-    ) {
-        super(DIAMOND_HOE, meta, count, "Diamond Hoe");
-    }
+  public ItemHoeDiamond(Integer meta, int count) { super(DIAMOND_HOE, meta, count, "Diamond Hoe"); }
 
-    @Override
-    public int getMaxDurability() {
-        return ItemTool.DURABILITY_DIAMOND;
-    }
+  @Override
+  public int getMaxDurability() {
+    return ItemTool.DURABILITY_DIAMOND;
+  }
 
-    @Override
-    public boolean isHoe() {
-        return true;
-    }
+  @Override
+  public boolean isHoe() {
+    return true;
+  }
 
-    @Override
-    public int getTier() {
-        return ItemTool.TIER_DIAMOND;
-    }
-
+  @Override
+  public int getTier() {
+    return ItemTool.TIER_DIAMOND;
+  }
 }

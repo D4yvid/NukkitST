@@ -5,19 +5,9 @@ package cn.nukkit.item;
  */
 public class ItemCompass extends Item {
 
-    public ItemCompass() {
-        this(0, 1);
-    }
+  public ItemCompass() { this(0, 1); }
 
-    public ItemCompass(Integer meta) {
-        this(meta, 1);
-    }
+  public ItemCompass(Integer meta) { this(meta, 1); }
 
-    public ItemCompass(
-            Integer meta,
-            int count
-    ) {
-        super(COMPASS, meta, count, "Compass");
-    }
-
+  public ItemCompass(Integer meta, int count) { super(COMPASS, meta, count, "Compass"); }
 }

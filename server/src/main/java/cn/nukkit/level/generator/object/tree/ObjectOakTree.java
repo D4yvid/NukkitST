@@ -10,38 +10,31 @@ import cn.nukkit.math.NukkitRandom;
  */
 public class ObjectOakTree extends ObjectTree {
 
-    private int treeHeight = 7;
+  private int treeHeight = 7;
 
-    @Override
-    public int getTrunkBlock() {
-        return Block.LOG;
-    }
+  @Override
+  public int getTrunkBlock() {
+    return Block.LOG;
+  }
 
-    @Override
-    public int getLeafBlock() {
-        return Block.LEAVES;
-    }
+  @Override
+  public int getLeafBlock() {
+    return Block.LEAVES;
+  }
 
-    @Override
-    public int getType() {
-        return BlockWood.OAK;
-    }
+  @Override
+  public int getType() {
+    return BlockWood.OAK;
+  }
 
-    @Override
-    public int getTreeHeight() {
-        return this.treeHeight;
-    }
+  @Override
+  public int getTreeHeight() {
+    return this.treeHeight;
+  }
 
-    @Override
-    public void placeObject(
-            ChunkManager level,
-            int x,
-            int y,
-            int z,
-            NukkitRandom random
-    ) {
-        this.treeHeight = random.nextBoundedInt(3) + 4;
-        super.placeObject(level, x, y, z, random);
-    }
-
+  @Override
+  public void placeObject(ChunkManager level, int x, int y, int z, NukkitRandom random) {
+    this.treeHeight = random.nextBoundedInt(3) + 4;
+    super.placeObject(level, x, y, z, random);
+  }
 }

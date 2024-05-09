@@ -8,15 +8,9 @@ import cn.nukkit.network.protocol.LevelEventPacket;
  */
 public class AnvilUseSound extends GenericSound {
 
-    public AnvilUseSound(Vector3 pos) {
-        this(pos, 0);
-    }
+  public AnvilUseSound(Vector3 pos) { this(pos, 0); }
 
-    public AnvilUseSound(
-            Vector3 pos,
-            float pitch
-    ) {
-        super(pos, LevelEventPacket.EVENT_SOUND_ANVIL_USE, pitch);
-    }
-
+  public AnvilUseSound(Vector3 pos, float pitch) {
+    super(pos, LevelEventPacket.EVENT_SOUND_ANVIL_USE, pitch);
+  }
 }

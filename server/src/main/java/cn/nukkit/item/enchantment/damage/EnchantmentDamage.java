@@ -8,7 +8,6 @@ import cn.nukkit.item.Item;
 import cn.nukkit.item.enchantment.Enchantment;
 import cn.nukkit.item.enchantment.EnchantmentType;
 import cn.nukkit.potion.Effect;
-
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -16,80 +15,67 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public abstract class EnchantmentDamage extends Enchantment {
 
-    protected final TYPE damageType;
+  protected final TYPE damageType;
 
-    protected EnchantmentDamage(
-            int id,
-            String name,
-            int weight,
-            TYPE type
-    ) {
-        super(id, name, weight, EnchantmentType.SWORD);
-        this.damageType = type;
+  protected EnchantmentDamage(int id, String name, int weight, TYPE type) {
+    super(id, name, weight, EnchantmentType.SWORD);
+    this.damageType = type;
+  }
+
+  @Override
+  public double getDamageBonus(Entity entity) {
+    int level = this.level;
+
+    switch (this.damageType) {
+    case ARTHROPODS:
+      if (entity instanceof EntityArthropod) {
+        return (double)level * 2.5;
+      }
+    case SMITE:
+      if (entity instanceof EntitySmite) {
+        return (double)level * 2.5;
+      }
+    case ALL:
+      return (double)level * 1.25;
     }
 
-    @Override
-    public double getDamageBonus(Entity entity) {
-        int level = this.level;
+    return 0;
+  }
 
-        switch (this.damageType) {
-            case ARTHROPODS:
-                if (entity instanceof EntityArthropod) {
-                    return (double) level * 2.5;
-                }
-            case SMITE:
-                if (entity instanceof EntitySmite) {
-                    return (double) level * 2.5;
-                }
-            case ALL:
-                return (double) level * 1.25;
-        }
+  @Override
+  public boolean isCompatibleWith(Enchantment enchantment) {
+    return !(enchantment instanceof EnchantmentDamage);
+  }
 
-        return 0;
+  @Override
+  public boolean canEnchant(Item item) {
+    return item.isAxe() || super.canEnchant(item);
+  }
+
+  @Override
+  public int getMaxLevel() {
+    return 5;
+  }
+
+  @Override
+  public void doPostAttack(Entity attacker, Entity entity) {
+    if (attacker instanceof EntityLiving) {
+      if (this.damageType == TYPE.ARTHROPODS && entity instanceof EntityArthropod) {
+        int duration = 20 + ThreadLocalRandom.current().nextInt(10 * this.level);
+        entity.addEffect(Effect.getEffect(Effect.SLOWNESS).setDuration(duration).setAmplifier(3));
+      }
     }
+  }
 
-    @Override
-    public boolean isCompatibleWith(Enchantment enchantment) {
-        return !(enchantment instanceof EnchantmentDamage);
-    }
+  @Override
+  public String getName() {
+    return "%enchantment.damage." + this.name;
+  }
 
-    @Override
-    public boolean canEnchant(Item item) {
-        return item.isAxe() || super.canEnchant(item);
-    }
+  @Override
+  public boolean isMajor() {
+    return true;
+  }
 
-    @Override
-    public int getMaxLevel() {
-        return 5;
-    }
-
-    @Override
-    public void doPostAttack(
-            Entity attacker,
-            Entity entity
-    ) {
-        if (attacker instanceof EntityLiving) {
-            if (this.damageType == TYPE.ARTHROPODS && entity instanceof EntityArthropod) {
-                int duration = 20 + ThreadLocalRandom.current().nextInt(10 * this.level);
-                entity.addEffect(Effect.getEffect(Effect.SLOWNESS).setDuration(duration).setAmplifier(3));
-            }
-        }
-    }
-
-    @Override
-    public String getName() {
-        return "%enchantment.damage." + this.name;
-    }
-
-    @Override
-    public boolean isMajor() {
-        return true;
-    }
-
-    public enum TYPE {
-        ALL,
-        SMITE,
-        ARTHROPODS
-    }
-
+  public enum TYPE { ALL, SMITE, ARTHROPODS }
 }

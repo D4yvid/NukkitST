@@ -8,11 +8,7 @@ import cn.nukkit.math.Vector3;
  */
 public class TerrainParticle extends GenericParticle {
 
-    public TerrainParticle(
-            Vector3 pos,
-            Block block
-    ) {
-        super(pos, Particle.TYPE_TERRAIN, (block.getDamage() << 8) | block.getId());
-    }
-
+  public TerrainParticle(Vector3 pos, Block block) {
+    super(pos, Particle.TYPE_TERRAIN, (block.getDamage() << 8) | block.getId());
+  }
 }

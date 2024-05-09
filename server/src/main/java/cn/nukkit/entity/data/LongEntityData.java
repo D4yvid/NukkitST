@@ -7,27 +7,19 @@ import cn.nukkit.entity.Entity;
  */
 public class LongEntityData extends EntityData<Long> {
 
-    public long data;
+  public long data;
 
-    public LongEntityData(
-            int id,
-            long data
-    ) {
-        super(id);
-        this.data = data;
-    }
+  public LongEntityData(int id, long data) {
+    super(id);
+    this.data = data;
+  }
 
-    public Long getData() {
-        return data;
-    }
+  public Long getData() { return data; }
 
-    public void setData(Long data) {
-        this.data = data;
-    }
+  public void setData(Long data) { this.data = data; }
 
-    @Override
-    public int getType() {
-        return Entity.DATA_TYPE_LONG;
-    }
-
+  @Override
+  public int getType() {
+    return Entity.DATA_TYPE_LONG;
+  }
 }

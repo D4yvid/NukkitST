@@ -1,7 +1,6 @@
 package cn.nukkit.raknet.protocol;
 
 import cn.nukkit.utils.Binary;
-
 import java.net.InetSocketAddress;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
@@ -11,187 +10,141 @@ import java.util.Arrays;
  */
 public abstract class Packet implements Cloneable {
 
-    public byte[] buffer;
+  public byte[] buffer;
 
-    public Long sendTime;
+  public Long sendTime;
 
-    protected int offset = 0;
+  protected int offset = 0;
 
-    public abstract byte getID();
+  public abstract byte getID();
 
-    protected byte[] get(int len) {
-        if (len < 0) {
-            this.offset = this.buffer.length - 1;
-            return new byte[0];
-        }
-
-        byte[] buffer = new byte[len];
-        for (int i = 0; i < len; i++) {
-            buffer[i] = this.buffer[this.offset++];
-        }
-        return buffer;
+  protected byte[] get(int len) {
+    if (len < 0) {
+      this.offset = this.buffer.length - 1;
+      return new byte[0];
     }
 
-    protected byte[] getAll() {
-        return this.get();
+    byte[] buffer = new byte[len];
+    for (int i = 0; i < len; i++) {
+      buffer[i] = this.buffer[this.offset++];
     }
+    return buffer;
+  }
 
-    protected byte[] get() {
-        try {
-            return Arrays.copyOfRange(this.buffer, this.offset, this.buffer.length - 1);
-        } catch (Exception e) {
-            return new byte[0];
-        }
-    }
+  protected byte[] getAll() { return this.get(); }
 
-    protected long getLong() {
-        return Binary.readLong(this.get(8));
+  protected byte[] get() {
+    try {
+      return Arrays.copyOfRange(this.buffer, this.offset, this.buffer.length - 1);
+    } catch (Exception e) {
+      return new byte[0];
     }
+  }
 
-    protected int getInt() {
-        return Binary.readInt(this.get(4));
-    }
+  protected long getLong() { return Binary.readLong(this.get(8)); }
 
-    protected short getSignedShort() {
-        return (short) this.getShort();
-    }
+  protected int getInt() { return Binary.readInt(this.get(4)); }
 
-    protected int getShort() {
-        return Binary.readShort(this.get(2));
-    }
+  protected short getSignedShort() { return (short)this.getShort(); }
 
-    protected int getTriad() {
-        return Binary.readTriad(this.get(3));
-    }
+  protected int getShort() { return Binary.readShort(this.get(2)); }
 
-    protected int getLTriad() {
-        return Binary.readLTriad(this.get(3));
-    }
+  protected int getTriad() { return Binary.readTriad(this.get(3)); }
 
-    protected byte getByte() {
-        return this.buffer[this.offset++];
-    }
+  protected int getLTriad() { return Binary.readLTriad(this.get(3)); }
 
-    protected String getString() {
-        return new String(this.get(this.getSignedShort()), StandardCharsets.UTF_8);
-    }
+  protected byte getByte() { return this.buffer[this.offset++]; }
 
-    protected InetSocketAddress getAddress() {
-        byte version = this.getByte();
-        if (version == 4) {
-            String addr = ((~this.getByte()) & 0xff) + "." + ((~this.getByte()) & 0xff) + "." + ((~this.getByte()) & 0xff) + "." + ((~this.getByte()) & 0xff);
-            int port = this.getShort();
-            return new InetSocketAddress(addr, port);
-        } else {
-            //todo IPV6 SUPPORT
-            return null;
-        }
-    }
+  protected String getString() {
+    return new String(this.get(this.getSignedShort()), StandardCharsets.UTF_8);
+  }
 
-    protected boolean feof() {
-        return !(this.offset >= 0 && this.offset + 1 <= this.buffer.length);
+  protected InetSocketAddress getAddress() {
+    byte version = this.getByte();
+    if (version == 4) {
+      String addr = ((~this.getByte()) & 0xff) + "." + ((~this.getByte()) & 0xff) + "." +
+                    ((~this.getByte()) & 0xff) + "." + ((~this.getByte()) & 0xff);
+      int port = this.getShort();
+      return new InetSocketAddress(addr, port);
+    } else {
+      // todo IPV6 SUPPORT
+      return null;
     }
+  }
 
-    protected void put(byte[] b) {
-        this.buffer = Binary.appendBytes(this.buffer, b);
-    }
+  protected boolean feof() { return !(this.offset >= 0 && this.offset + 1 <= this.buffer.length); }
 
-    protected void putLong(long v) {
-        this.put(Binary.writeLong(v));
-    }
+  protected void put(byte[] b) { this.buffer = Binary.appendBytes(this.buffer, b); }
 
-    protected void putInt(int v) {
-        this.put(Binary.writeInt(v));
-    }
+  protected void putLong(long v) { this.put(Binary.writeLong(v)); }
 
-    protected void putShort(int v) {
-        this.put(Binary.writeShort(v));
-    }
+  protected void putInt(int v) { this.put(Binary.writeInt(v)); }
 
-    protected void putSignedShort(short v) {
-        this.put(Binary.writeShort(v & 0xffff));
-    }
+  protected void putShort(int v) { this.put(Binary.writeShort(v)); }
 
-    protected void putTriad(int v) {
-        this.put(Binary.writeTriad(v));
-    }
+  protected void putSignedShort(short v) { this.put(Binary.writeShort(v & 0xffff)); }
 
-    protected void putLTriad(int v) {
-        this.put(Binary.writeLTriad(v));
-    }
+  protected void putTriad(int v) { this.put(Binary.writeTriad(v)); }
 
-    protected void putByte(byte b) {
-        byte[] newBytes = new byte[this.buffer.length + 1];
-        System.arraycopy(this.buffer, 0, newBytes, 0, this.buffer.length);
-        newBytes[this.buffer.length] = b;
-        this.buffer = newBytes;
-    }
+  protected void putLTriad(int v) { this.put(Binary.writeLTriad(v)); }
 
-    protected void putString(String str) {
-        byte[] b = str.getBytes(StandardCharsets.UTF_8);
-        this.putShort(b.length);
-        this.put(b);
-    }
+  protected void putByte(byte b) {
+    byte[] newBytes = new byte[this.buffer.length + 1];
+    System.arraycopy(this.buffer, 0, newBytes, 0, this.buffer.length);
+    newBytes[this.buffer.length] = b;
+    this.buffer = newBytes;
+  }
 
-    protected void putAddress(
-            String addr,
-            int port
-    ) {
-        this.putAddress(addr, port, (byte) 4);
-    }
+  protected void putString(String str) {
+    byte[] b = str.getBytes(StandardCharsets.UTF_8);
+    this.putShort(b.length);
+    this.put(b);
+  }
 
-    protected void putAddress(
-            String addr,
-            int port,
-            byte version
-    ) {
-        this.putByte(version);
-        if (version == 4) {
-            for (String b : addr.split("\\.")) {
-                this.putByte((byte) ((~Integer.valueOf(b)) & 0xff));
-            }
-            this.putShort(port);
-        } else {
-            //todo ipv6
-        }
-    }
+  protected void putAddress(String addr, int port) { this.putAddress(addr, port, (byte)4); }
 
-    protected void putAddress(InetSocketAddress address) {
-        this.putAddress(address.getHostString(), address.getPort());
+  protected void putAddress(String addr, int port, byte version) {
+    this.putByte(version);
+    if (version == 4) {
+      for (String b : addr.split("\\.")) {
+        this.putByte((byte)((~Integer.valueOf(b)) & 0xff));
+      }
+      this.putShort(port);
+    } else {
+      // todo ipv6
     }
+  }
 
-    public void encode() {
-        this.buffer = new byte[]{getID()};
-    }
+  protected void putAddress(InetSocketAddress address) {
+    this.putAddress(address.getHostString(), address.getPort());
+  }
 
-    public void decode() {
-        this.offset = 1;
-    }
+  public void encode() { this.buffer = new byte[] {getID()}; }
 
-    public Packet clean() {
-        this.buffer = null;
-        this.offset = 0;
-        this.sendTime = null;
-        return this;
-    }
+  public void decode() { this.offset = 1; }
 
-    @Override
-    public Packet clone() throws CloneNotSupportedException {
-        Packet packet = (Packet) super.clone();
-        packet.buffer = this.buffer.clone();
-        return packet;
-    }
+  public Packet clean() {
+    this.buffer = null;
+    this.offset = 0;
+    this.sendTime = null;
+    return this;
+  }
+
+  @Override
+  public Packet clone() throws CloneNotSupportedException {
+    Packet packet = (Packet)super.clone();
+    packet.buffer = this.buffer.clone();
+    return packet;
+  }
+
+  /**
+   * A factory to create new packet instances
+   */
+  public interface PacketFactory {
 
     /**
-     * A factory to create new packet instances
+     * Creates the packet
      */
-    public interface PacketFactory {
-
-        /**
-         * Creates the packet
-         */
-        Packet create();
-
-    }
-
+    Packet create();
+  }
 }

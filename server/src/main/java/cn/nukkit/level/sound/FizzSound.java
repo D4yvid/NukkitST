@@ -8,15 +8,9 @@ import cn.nukkit.network.protocol.LevelEventPacket;
  */
 public class FizzSound extends GenericSound {
 
-    public FizzSound(Vector3 pos) {
-        this(pos, 0);
-    }
+  public FizzSound(Vector3 pos) { this(pos, 0); }
 
-    public FizzSound(
-            Vector3 pos,
-            float pitch
-    ) {
-        super(pos, LevelEventPacket.EVENT_SOUND_FIZZ, pitch);
-    }
-
+  public FizzSound(Vector3 pos, float pitch) {
+    super(pos, LevelEventPacket.EVENT_SOUND_FIZZ, pitch);
+  }
 }

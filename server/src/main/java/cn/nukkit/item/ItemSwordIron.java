@@ -5,39 +5,29 @@ package cn.nukkit.item;
  */
 public class ItemSwordIron extends ItemTool {
 
-    public ItemSwordIron() {
-        this(0, 1);
-    }
+  public ItemSwordIron() { this(0, 1); }
 
-    public ItemSwordIron(Integer meta) {
-        this(meta, 1);
-    }
+  public ItemSwordIron(Integer meta) { this(meta, 1); }
 
-    public ItemSwordIron(
-            Integer meta,
-            int count
-    ) {
-        super(IRON_SWORD, meta, count, "Iron Sword");
-    }
+  public ItemSwordIron(Integer meta, int count) { super(IRON_SWORD, meta, count, "Iron Sword"); }
 
-    @Override
-    public int getMaxDurability() {
-        return ItemTool.DURABILITY_IRON;
-    }
+  @Override
+  public int getMaxDurability() {
+    return ItemTool.DURABILITY_IRON;
+  }
 
-    @Override
-    public boolean isSword() {
-        return true;
-    }
+  @Override
+  public boolean isSword() {
+    return true;
+  }
 
-    @Override
-    public int getTier() {
-        return ItemTool.TIER_IRON;
-    }
+  @Override
+  public int getTier() {
+    return ItemTool.TIER_IRON;
+  }
 
-    @Override
-    public int getAttackDamage() {
-        return 6;
-    }
-
+  @Override
+  public int getAttackDamage() {
+    return 6;
+  }
 }

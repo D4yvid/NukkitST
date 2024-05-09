@@ -7,29 +7,22 @@ import cn.nukkit.item.Item;
  */
 public class BlockSlime extends BlockSolid {
 
-    public BlockSlime() {
-        this(0);
-    }
+  public BlockSlime() { this(0); }
 
-    public BlockSlime(int meta) {
-        super(meta);
-    }
+  public BlockSlime(int meta) { super(meta); }
 
-    @Override
-    public String getName() {
-        return "Slime Block";
-    }
+  @Override
+  public String getName() {
+    return "Slime Block";
+  }
 
-    @Override
-    public int getId() {
-        return SLIME_BLOCK;
-    }
+  @Override
+  public int getId() {
+    return SLIME_BLOCK;
+  }
 
-    @Override
-    public int[][] getDrops(Item item) {
-        return new int[][]{
-                {Item.SLIME_BLOCK, 0, 1}
-        };
-    }
-
+  @Override
+  public int[][] getDrops(Item item) {
+    return new int[][] {{Item.SLIME_BLOCK, 0, 1}};
+  }
 }

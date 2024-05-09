@@ -1,7 +1,6 @@
 package cn.nukkit.inventory;
 
 import cn.nukkit.item.Item;
-
 import java.util.UUID;
 
 /**
@@ -9,12 +8,11 @@ import java.util.UUID;
  */
 public interface Recipe {
 
-    Item getResult();
+  Item getResult();
 
-    void registerToCraftingManager();
+  void registerToCraftingManager();
 
-    UUID getId();
+  UUID getId();
 
-    void setId(UUID id);
-
+  void setId(UUID id);
 }

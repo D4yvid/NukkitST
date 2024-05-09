@@ -10,28 +10,27 @@ import cn.nukkit.utils.TextFormat;
  */
 public class ReloadCommand extends VanillaCommand {
 
-    public ReloadCommand(String name) {
-        super(name, "%nukkit.command.reload.description", "%commands.reload.usage");
-        this.setPermission("nukkit.command.reload");
+  public ReloadCommand(String name) {
+    super(name, "%nukkit.command.reload.description", "%commands.reload.usage");
+    this.setPermission("nukkit.command.reload");
+  }
+
+  @Override
+  public boolean execute(CommandSender sender, String commandLabel, String[] args) {
+    if (!this.testPermission(sender)) {
+      return true;
     }
 
-    @Override
-    public boolean execute(
-            CommandSender sender,
-            String commandLabel,
-            String[] args
-    ) {
-        if (!this.testPermission(sender)) {
-            return true;
-        }
+    Command.broadcastCommandMessage(
+        sender, new TranslationContainer(TextFormat.YELLOW + "%nukkit.command.reload.reloading" +
+                                         TextFormat.WHITE));
 
-        Command.broadcastCommandMessage(sender, new TranslationContainer(TextFormat.YELLOW + "%nukkit.command.reload.reloading" + TextFormat.WHITE));
+    sender.getServer().reload();
 
-        sender.getServer().reload();
+    Command.broadcastCommandMessage(
+        sender, new TranslationContainer(TextFormat.YELLOW + "%nukkit.command.reload.reloaded" +
+                                         TextFormat.WHITE));
 
-        Command.broadcastCommandMessage(sender, new TranslationContainer(TextFormat.YELLOW + "%nukkit.command.reload.reloaded" + TextFormat.WHITE));
-
-        return true;
-    }
-
+    return true;
+  }
 }

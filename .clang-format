@@ -1,0 +1,19 @@
+---
+BasedOnStyle: Google
+IndentWidth: 2
+---
+Language: Java
+ColumnLimit: 100
+---
+Language: Cpp
+ColumnLimit: 100
+AlignAfterOpenBracket: BlockIndent
+AlignArrayOfStructures: Right
+AlignConsecutiveMacros: AcrossEmptyLines
+AlignEscapedNewlines: Right
+AlignOperands: AlignAfterOperator
+AlignTrailingComments: Always
+AllowShortBlocksOnASingleLine: Empty
+AllowShortCaseLabelsOnASingleLine: true
+AllowShortEnumsOnASingleLine: true
+BreakBeforeBraces: Linux

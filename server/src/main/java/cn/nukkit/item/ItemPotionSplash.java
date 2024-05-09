@@ -5,25 +5,19 @@ package cn.nukkit.item;
  */
 public class ItemPotionSplash extends Item {
 
-    public ItemPotionSplash(Integer meta) {
-        this(meta, 1);
-    }
+  public ItemPotionSplash(Integer meta) { this(meta, 1); }
 
-    public ItemPotionSplash(
-            Integer meta,
-            int count
-    ) {
-        super(SPLASH_POTION, meta, count, "Splash Potion");
-    }
+  public ItemPotionSplash(Integer meta, int count) {
+    super(SPLASH_POTION, meta, count, "Splash Potion");
+  }
 
-    @Override
-    public int getMaxStackSize() {
-        return 1;
-    }
+  @Override
+  public int getMaxStackSize() {
+    return 1;
+  }
 
-    @Override
-    public boolean canBeActivated() {
-        return true;
-    }
-
+  @Override
+  public boolean canBeActivated() {
+    return true;
+  }
 }

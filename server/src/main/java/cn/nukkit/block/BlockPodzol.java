@@ -5,22 +5,17 @@ package cn.nukkit.block;
  */
 public class BlockPodzol extends BlockDirt {
 
-    public BlockPodzol() {
-        this(0);
-    }
+  public BlockPodzol() { this(0); }
 
-    public BlockPodzol(int meta) {
-        super(0);
-    }
+  public BlockPodzol(int meta) { super(0); }
 
-    @Override
-    public int getId() {
-        return PODZOL;
-    }
+  @Override
+  public int getId() {
+    return PODZOL;
+  }
 
-    @Override
-    public String getName() {
-        return "Podzol";
-    }
-
+  @Override
+  public String getName() {
+    return "Podzol";
+  }
 }

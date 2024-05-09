@@ -5,10 +5,9 @@ package cn.nukkit.event;
  */
 public interface Cancellable {
 
-    boolean isCancelled();
+  boolean isCancelled();
 
-    void setCancelled(boolean forceCancel);
+  void setCancelled(boolean forceCancel);
 
-    void setCancelled();
-
+  void setCancelled();
 }

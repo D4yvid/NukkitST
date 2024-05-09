@@ -8,15 +8,9 @@ import cn.nukkit.network.protocol.LevelEventPacket;
  */
 public class ClickFailSound extends GenericSound {
 
-    public ClickFailSound(Vector3 pos) {
-        this(pos, 0);
-    }
+  public ClickFailSound(Vector3 pos) { this(pos, 0); }
 
-    public ClickFailSound(
-            Vector3 pos,
-            float pitch
-    ) {
-        super(pos, LevelEventPacket.EVENT_SOUND_CLICK_FAIL, pitch);
-    }
-
+  public ClickFailSound(Vector3 pos, float pitch) {
+    super(pos, LevelEventPacket.EVENT_SOUND_CLICK_FAIL, pitch);
+  }
 }

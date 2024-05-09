@@ -12,28 +12,18 @@ import cn.nukkit.event.HandlerList;
  */
 public class PlayerInvalidMoveEvent extends PlayerEvent implements Cancellable {
 
-    private static final HandlerList handlers = new HandlerList();
+  private static final HandlerList handlers = new HandlerList();
 
-    private boolean revert;
+  private boolean revert;
 
-    public PlayerInvalidMoveEvent(
-            Player player,
-            boolean revert
-    ) {
-        this.player = player;
-        this.revert = revert;
-    }
+  public PlayerInvalidMoveEvent(Player player, boolean revert) {
+    this.player = player;
+    this.revert = revert;
+  }
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+  public static HandlerList getHandlers() { return handlers; }
 
-    public boolean isRevert() {
-        return this.revert;
-    }
+  public boolean isRevert() { return this.revert; }
 
-    public void setRevert(boolean revert) {
-        this.revert = revert;
-    }
-
+  public void setRevert(boolean revert) { this.revert = revert; }
 }

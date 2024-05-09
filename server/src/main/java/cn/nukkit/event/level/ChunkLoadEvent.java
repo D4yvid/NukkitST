@@ -8,24 +8,16 @@ import cn.nukkit.level.format.FullChunk;
  */
 public class ChunkLoadEvent extends ChunkEvent {
 
-    private static final HandlerList handlers = new HandlerList();
+  private static final HandlerList handlers = new HandlerList();
 
-    private final boolean newChunk;
+  private final boolean newChunk;
 
-    public ChunkLoadEvent(
-            FullChunk chunk,
-            boolean newChunk
-    ) {
-        super(chunk);
-        this.newChunk = newChunk;
-    }
+  public ChunkLoadEvent(FullChunk chunk, boolean newChunk) {
+    super(chunk);
+    this.newChunk = newChunk;
+  }
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+  public static HandlerList getHandlers() { return handlers; }
 
-    public boolean isNewChunk() {
-        return newChunk;
-    }
-
+  public boolean isNewChunk() { return newChunk; }
 }

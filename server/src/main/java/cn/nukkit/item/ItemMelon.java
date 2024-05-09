@@ -5,19 +5,9 @@ package cn.nukkit.item;
  */
 public class ItemMelon extends ItemEdible {
 
-    public ItemMelon() {
-        this(0, 1);
-    }
+  public ItemMelon() { this(0, 1); }
 
-    public ItemMelon(Integer meta) {
-        this(meta, 1);
-    }
+  public ItemMelon(Integer meta) { this(meta, 1); }
 
-    public ItemMelon(
-            Integer meta,
-            int count
-    ) {
-        super(MELON, meta, count, "Melon");
-    }
-
+  public ItemMelon(Integer meta, int count) { super(MELON, meta, count, "Melon"); }
 }

@@ -11,8 +11,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UpdateObject {
 
-    private final int population;
+  private final int population;
 
-    private final Block location;
-
+  private final Block location;
 }

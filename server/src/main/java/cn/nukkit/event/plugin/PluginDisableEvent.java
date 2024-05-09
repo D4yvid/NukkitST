@@ -7,8 +7,5 @@ import cn.nukkit.plugin.Plugin;
  */
 public class PluginDisableEvent extends PluginEvent {
 
-    public PluginDisableEvent(Plugin plugin) {
-        super(plugin);
-    }
-
+  public PluginDisableEvent(Plugin plugin) { super(plugin); }
 }

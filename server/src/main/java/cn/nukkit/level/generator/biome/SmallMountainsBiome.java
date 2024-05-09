@@ -5,16 +5,14 @@ package cn.nukkit.level.generator.biome;
  */
 public class SmallMountainsBiome extends MountainsBiome {
 
-    public SmallMountainsBiome() {
-        super();
+  public SmallMountainsBiome() {
+    super();
 
-        this.setElevation(63, 97);
+    this.setElevation(63, 97);
+  }
 
-    }
-
-    @Override
-    public String getName() {
-        return "Small Mountains";
-    }
-
+  @Override
+  public String getName() {
+    return "Small Mountains";
+  }
 }

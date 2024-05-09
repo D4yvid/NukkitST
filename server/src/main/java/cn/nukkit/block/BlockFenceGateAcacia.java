@@ -5,22 +5,17 @@ package cn.nukkit.block;
  */
 public class BlockFenceGateAcacia extends BlockFenceGate {
 
-    public BlockFenceGateAcacia() {
-        this(0);
-    }
+  public BlockFenceGateAcacia() { this(0); }
 
-    public BlockFenceGateAcacia(int meta) {
-        super(meta);
-    }
+  public BlockFenceGateAcacia(int meta) { super(meta); }
 
-    @Override
-    public int getId() {
-        return FENCE_GATE_ACACIA;
-    }
+  @Override
+  public int getId() {
+    return FENCE_GATE_ACACIA;
+  }
 
-    @Override
-    public String getName() {
-        return "Acacia Fence Gate";
-    }
-
+  @Override
+  public String getName() {
+    return "Acacia Fence Gate";
+  }
 }

@@ -1,65 +1,52 @@
 package cn.nukkit.inventory;
 
-
 import cn.nukkit.Server;
 import cn.nukkit.item.Item;
-
 import java.util.UUID;
 
 public class BrewingRecipe implements Recipe {
 
-    private final Item output;
+  private final Item output;
 
-    private final Item potion;
+  private final Item potion;
 
-    private UUID id;
+  private UUID id;
 
-    private Item ingredient;
+  private Item ingredient;
 
-    public BrewingRecipe(
-            Item result,
-            Item ingredient,
-            Item potion
-    ) {
-        this.output = result.clone();
-        this.ingredient = ingredient.clone();
-        this.potion = potion.clone();
+  public BrewingRecipe(Item result, Item ingredient, Item potion) {
+    this.output = result.clone();
+    this.ingredient = ingredient.clone();
+    this.potion = potion.clone();
+  }
+
+  @Override
+  public UUID getId() {
+    return id;
+  }
+
+  @Override
+  public void setId(UUID uuid) {
+    if (id != null) {
+      throw new IllegalStateException("Id is already set");
     }
 
-    @Override
-    public UUID getId() {
-        return id;
-    }
+    this.id = uuid;
+  }
 
-    @Override
-    public void setId(UUID uuid) {
-        if (id != null) {
-            throw new IllegalStateException("Id is already set");
-        }
+  public Item getInput() { return ingredient.clone(); }
 
-        this.id = uuid;
-    }
+  public void setInput(Item item) { ingredient = item.clone(); }
 
-    public Item getInput() {
-        return ingredient.clone();
-    }
+  public Item getPotion() { return potion.clone(); }
 
-    public void setInput(Item item) {
-        ingredient = item.clone();
-    }
+  @Override
+  public Item getResult() {
+    return output.clone();
+  }
 
-    public Item getPotion() {
-        return potion.clone();
-    }
-
-    @Override
-    public Item getResult() {
-        return output.clone();
-    }
-
-    @Override
-    public void registerToCraftingManager() {
-        Server.getInstance().getCraftingManager().registerBrewingRecipe(this);
-    }
-
+  @Override
+  public void registerToCraftingManager() {
+    Server.getInstance().getCraftingManager().registerBrewingRecipe(this);
+  }
 }

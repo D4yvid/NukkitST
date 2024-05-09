@@ -7,8 +7,5 @@ import cn.nukkit.math.Vector3;
  */
 public class LavaParticle extends GenericParticle {
 
-    public LavaParticle(Vector3 pos) {
-        super(pos, Particle.TYPE_LAVA);
-    }
-
+  public LavaParticle(Vector3 pos) { super(pos, Particle.TYPE_LAVA); }
 }

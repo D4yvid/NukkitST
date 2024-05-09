@@ -10,24 +10,16 @@ import cn.nukkit.inventory.Inventory;
  */
 public class InventoryPickupArrowEvent extends InventoryEvent implements Cancellable {
 
-    private static final HandlerList handlers = new HandlerList();
+  private static final HandlerList handlers = new HandlerList();
 
-    private final EntityArrow arrow;
+  private final EntityArrow arrow;
 
-    public InventoryPickupArrowEvent(
-            Inventory inventory,
-            EntityArrow arrow
-    ) {
-        super(inventory);
-        this.arrow = arrow;
-    }
+  public InventoryPickupArrowEvent(Inventory inventory, EntityArrow arrow) {
+    super(inventory);
+    this.arrow = arrow;
+  }
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+  public static HandlerList getHandlers() { return handlers; }
 
-    public EntityArrow getArrow() {
-        return arrow;
-    }
-
+  public EntityArrow getArrow() { return arrow; }
 }

@@ -5,19 +5,15 @@ package cn.nukkit.block;
  */
 public abstract class BlockPressurePlate extends BlockTransparent {
 
-    protected BlockPressurePlate() {
-        this(0);
-    }
+  protected BlockPressurePlate() { this(0); }
 
-    protected BlockPressurePlate(int meta) {
-        super(meta);
-    }
+  protected BlockPressurePlate(int meta) { super(meta); }
 
-    @Override
-    public boolean canPassThrough() {
-        return true;
-    }
+  @Override
+  public boolean canPassThrough() {
+    return true;
+  }
 
-    //todo redstone here?
-    //todo bounding box
+  // todo redstone here?
+  // todo bounding box
 }

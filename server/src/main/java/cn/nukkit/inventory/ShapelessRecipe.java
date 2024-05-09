@@ -2,7 +2,6 @@ package cn.nukkit.inventory;
 
 import cn.nukkit.Server;
 import cn.nukkit.item.Item;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -12,86 +11,83 @@ import java.util.UUID;
  */
 public class ShapelessRecipe implements Recipe {
 
-    private final Item output;
+  private final Item output;
 
-    private final List<Item> ingredients = new ArrayList<>();
+  private final List<Item> ingredients = new ArrayList<>();
 
-    private UUID uuid = null;
+  private UUID uuid = null;
 
-    public ShapelessRecipe(Item result) {
-        this.output = result.clone();
+  public ShapelessRecipe(Item result) { this.output = result.clone(); }
+
+  @Override
+  public Item getResult() {
+    return this.output.clone();
+  }
+
+  @Override
+  public UUID getId() {
+    return this.uuid;
+  }
+
+  @Override
+  public void setId(UUID uuid) {
+    if (this.uuid != null) {
+      throw new IllegalStateException("Id is already set");
+    }
+    this.uuid = uuid;
+  }
+
+  public ShapelessRecipe addIngredient(Item item) {
+    if (this.ingredients.size() > 9) {
+      throw new IllegalArgumentException("Shapeless recipes cannot have more than 9 ingredients");
     }
 
-    @Override
-    public Item getResult() {
-        return this.output.clone();
+    Item it = item.clone();
+    it.setCount(1);
+
+    while (item.getCount() > 0) {
+      this.ingredients.add(it.clone());
+      item.setCount(item.getCount() - 1);
     }
 
-    @Override
-    public UUID getId() {
-        return this.uuid;
+    return this;
+  }
+
+  public ShapelessRecipe removeIngredient(Item item) {
+    for (Item ingredient : this.ingredients) {
+      if (item.getCount() <= 0) {
+        break;
+      }
+
+      if (ingredient.equals(item, item.hasMeta(), item.getCompoundTag() != null)) {
+        this.ingredients.remove(ingredient);
+        item.setCount(item.getCount() - 1);
+      }
     }
 
-    @Override
-    public void setId(UUID uuid) {
-        if (this.uuid != null) {
-            throw new IllegalStateException("Id is already set");
-        }
-        this.uuid = uuid;
+    return this;
+  }
+
+  public List<Item> getIngredientList() {
+    List<Item> ingredients = new ArrayList<>();
+    for (Item ingredient : this.ingredients) {
+      ingredients.add(ingredient.clone());
     }
 
-    public ShapelessRecipe addIngredient(Item item) {
-        if (this.ingredients.size() > 9) {
-            throw new IllegalArgumentException("Shapeless recipes cannot have more than 9 ingredients");
-        }
+    return ingredients;
+  }
 
-        Item it = item.clone();
-        it.setCount(1);
-
-        while (item.getCount() > 0) {
-            this.ingredients.add(it.clone());
-            item.setCount(item.getCount() - 1);
-        }
-
-        return this;
+  public int getIngredientCount() {
+    int count = 0;
+    for (Item ingredient : this.ingredients) {
+      count += ingredient.getCount();
     }
 
-    public ShapelessRecipe removeIngredient(Item item) {
-        for (Item ingredient : this.ingredients) {
-            if (item.getCount() <= 0) {
-                break;
-            }
+    return count;
+  }
 
-            if (ingredient.equals(item, item.hasMeta(), item.getCompoundTag() != null)) {
-                this.ingredients.remove(ingredient);
-                item.setCount(item.getCount() - 1);
-            }
-        }
-
-        return this;
-    }
-
-    public List<Item> getIngredientList() {
-        List<Item> ingredients = new ArrayList<>();
-        for (Item ingredient : this.ingredients) {
-            ingredients.add(ingredient.clone());
-        }
-
-        return ingredients;
-    }
-
-    public int getIngredientCount() {
-        int count = 0;
-        for (Item ingredient : this.ingredients) {
-            count += ingredient.getCount();
-        }
-
-        return count;
-    }
-
-    @Override
-    public void registerToCraftingManager() {
-        Server.getInstance().getCraftingManager().registerShapelessRecipe(this);
-    }
-
+  @Override
+  public void registerToCraftingManager() {
+    Server.getInstance().getCraftingManager().registerShapelessRecipe(this);
+  }
 }

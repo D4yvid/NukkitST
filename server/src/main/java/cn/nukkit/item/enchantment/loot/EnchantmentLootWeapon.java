@@ -8,8 +8,7 @@ import cn.nukkit.item.enchantment.EnchantmentType;
  */
 public class EnchantmentLootWeapon extends EnchantmentLoot {
 
-    public EnchantmentLootWeapon() {
-        super(Enchantment.ID_LOOTING, "lootBonus", 2, EnchantmentType.SWORD);
-    }
-
+  public EnchantmentLootWeapon() {
+    super(Enchantment.ID_LOOTING, "lootBonus", 2, EnchantmentType.SWORD);
+  }
 }

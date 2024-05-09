@@ -5,7 +5,6 @@ import cn.nukkit.block.Block;
 import cn.nukkit.event.Cancellable;
 import cn.nukkit.event.HandlerList;
 import cn.nukkit.item.Item;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,85 +13,54 @@ import java.util.List;
  */
 public class BlockBreakEvent extends BlockEvent implements Cancellable {
 
-    private static final HandlerList handlers = new HandlerList();
+  private static final HandlerList handlers = new HandlerList();
 
-    protected final Player player;
+  protected final Player player;
 
-    protected final Item item;
+  protected final Item item;
 
-    protected boolean instaBreak = false;
+  protected boolean instaBreak = false;
 
-    protected Item[] blockDrops = new Item[0];
+  protected Item[] blockDrops = new Item[0];
 
-    protected boolean fastBreak = false;
+  protected boolean fastBreak = false;
 
-    public BlockBreakEvent(
-            Player player,
-            Block block,
-            Item item
-    ) {
-        this(player, block, item, false, false);
+  public BlockBreakEvent(Player player, Block block, Item item) {
+    this(player, block, item, false, false);
+  }
+
+  public BlockBreakEvent(Player player, Block block, Item item, boolean instaBreak) {
+    this(player, block, item, instaBreak, false);
+  }
+
+  public BlockBreakEvent(Player player, Block block, Item item, boolean instaBreak,
+                         boolean fastBreak) {
+    super(block);
+    this.item = item;
+    this.player = player;
+    this.instaBreak = instaBreak;
+    int[][] drops = player.isSurvival() ? block.getDrops(item) : new int[0][0];
+    List<Item> list = new ArrayList<>();
+    for (int[] i : drops) {
+      list.add(Item.get(i[0], i[1], i[2]));
     }
+    this.blockDrops = list.toArray(new Item[list.size()]);
+    this.fastBreak = fastBreak;
+  }
 
-    public BlockBreakEvent(
-            Player player,
-            Block block,
-            Item item,
-            boolean instaBreak
-    ) {
-        this(player, block, item, instaBreak, false);
-    }
+  public static HandlerList getHandlers() { return handlers; }
 
-    public BlockBreakEvent(
-            Player player,
-            Block block,
-            Item item,
-            boolean instaBreak,
-            boolean fastBreak
-    ) {
-        super(block);
-        this.item = item;
-        this.player = player;
-        this.instaBreak = instaBreak;
-        int[][] drops = player.isSurvival() ? block.getDrops(item) : new int[0][0];
-        List<Item> list = new ArrayList<>();
-        for (int[] i : drops) {
-            list.add(Item.get(i[0], i[1], i[2]));
-        }
-        this.blockDrops = list.toArray(new Item[list.size()]);
-        this.fastBreak = fastBreak;
-    }
+  public Player getPlayer() { return player; }
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+  public Item getItem() { return item; }
 
-    public Player getPlayer() {
-        return player;
-    }
+  public boolean getInstaBreak() { return this.instaBreak; }
 
-    public Item getItem() {
-        return item;
-    }
+  public void setInstaBreak(boolean instaBreak) { this.instaBreak = instaBreak; }
 
-    public boolean getInstaBreak() {
-        return this.instaBreak;
-    }
+  public Item[] getDrops() { return blockDrops; }
 
-    public void setInstaBreak(boolean instaBreak) {
-        this.instaBreak = instaBreak;
-    }
+  public void setDrops(Item[] drops) { this.blockDrops = drops; }
 
-    public Item[] getDrops() {
-        return blockDrops;
-    }
-
-    public void setDrops(Item[] drops) {
-        this.blockDrops = drops;
-    }
-
-    public boolean isFastBreak() {
-        return this.fastBreak;
-    }
-
+  public boolean isFastBreak() { return this.fastBreak; }
 }

@@ -6,73 +6,54 @@ import cn.nukkit.command.CommandSender;
 import cn.nukkit.event.Cancellable;
 import cn.nukkit.event.HandlerList;
 import cn.nukkit.permission.Permissible;
-
 import java.util.HashSet;
 import java.util.Set;
 
 public class PlayerChatEvent extends PlayerMessageEvent implements Cancellable {
 
-    private static final HandlerList handlers = new HandlerList();
+  private static final HandlerList handlers = new HandlerList();
 
-    protected String format;
+  protected String format;
 
-    protected Set<CommandSender> recipients = new HashSet<>();
+  protected Set<CommandSender> recipients = new HashSet<>();
 
-    public PlayerChatEvent(
-            Player player,
-            String message
-    ) {
-        this(player, message, "chat.type.text", null);
-    }
+  public PlayerChatEvent(Player player, String message) {
+    this(player, message, "chat.type.text", null);
+  }
 
-    public PlayerChatEvent(
-            Player player,
-            String message,
-            String format,
-            Set<CommandSender> recipients
-    ) {
-        this.player = player;
-        this.message = message;
+  public PlayerChatEvent(Player player, String message, String format,
+                         Set<CommandSender> recipients) {
+    this.player = player;
+    this.message = message;
 
-        this.format = format;
+    this.format = format;
 
-        if (recipients == null) {
-            for (Permissible permissible : Server.getInstance().getPluginManager().getPermissionSubscriptions(Server.BROADCAST_CHANNEL_USERS)) {
-                if (permissible instanceof CommandSender) {
-                    this.recipients.add((CommandSender) permissible);
-                }
-            }
-
-        } else {
-            this.recipients = recipients;
+    if (recipients == null) {
+      for (Permissible permissible :
+           Server.getInstance().getPluginManager().getPermissionSubscriptions(
+               Server.BROADCAST_CHANNEL_USERS)) {
+        if (permissible instanceof CommandSender) {
+          this.recipients.add((CommandSender)permissible);
         }
-    }
+      }
 
-    public static HandlerList getHandlers() {
-        return handlers;
+    } else {
+      this.recipients = recipients;
     }
+  }
 
-    /**
-     * Changes the player that is sending the message
-     */
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
+  public static HandlerList getHandlers() { return handlers; }
 
-    public String getFormat() {
-        return this.format;
-    }
+  /**
+   * Changes the player that is sending the message
+   */
+  public void setPlayer(Player player) { this.player = player; }
 
-    public void setFormat(String format) {
-        this.format = format;
-    }
+  public String getFormat() { return this.format; }
 
-    public Set<CommandSender> getRecipients() {
-        return this.recipients;
-    }
+  public void setFormat(String format) { this.format = format; }
 
-    public void setRecipients(Set<CommandSender> recipients) {
-        this.recipients = recipients;
-    }
+  public Set<CommandSender> getRecipients() { return this.recipients; }
 
+  public void setRecipients(Set<CommandSender> recipients) { this.recipients = recipients; }
 }

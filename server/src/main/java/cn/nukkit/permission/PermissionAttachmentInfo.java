@@ -5,44 +5,31 @@ package cn.nukkit.permission;
  */
 public class PermissionAttachmentInfo {
 
-    private final Permissible permissible;
+  private final Permissible permissible;
 
-    private final String permission;
+  private final String permission;
 
-    private final PermissionAttachment attachment;
+  private final PermissionAttachment attachment;
 
-    private final boolean value;
+  private final boolean value;
 
-    public PermissionAttachmentInfo(
-            Permissible permissible,
-            String permission,
-            PermissionAttachment attachment,
-            boolean value
-    ) {
-        if (permission == null) {
-            throw new IllegalStateException("Permission may not be null");
-        }
-
-        this.permissible = permissible;
-        this.permission = permission;
-        this.attachment = attachment;
-        this.value = value;
+  public PermissionAttachmentInfo(Permissible permissible, String permission,
+                                  PermissionAttachment attachment, boolean value) {
+    if (permission == null) {
+      throw new IllegalStateException("Permission may not be null");
     }
 
-    public Permissible getPermissible() {
-        return permissible;
-    }
+    this.permissible = permissible;
+    this.permission = permission;
+    this.attachment = attachment;
+    this.value = value;
+  }
 
-    public String getPermission() {
-        return permission;
-    }
+  public Permissible getPermissible() { return permissible; }
 
-    public PermissionAttachment getAttachment() {
-        return attachment;
-    }
+  public String getPermission() { return permission; }
 
-    public boolean getValue() {
-        return value;
-    }
+  public PermissionAttachment getAttachment() { return attachment; }
 
+  public boolean getValue() { return value; }
 }

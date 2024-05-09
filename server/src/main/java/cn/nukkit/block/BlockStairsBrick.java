@@ -8,42 +8,37 @@ import cn.nukkit.utils.BlockColor;
  */
 public class BlockStairsBrick extends BlockStairs {
 
-    public BlockStairsBrick() {
-        this(0);
-    }
+  public BlockStairsBrick() { this(0); }
 
-    public BlockStairsBrick(int meta) {
-        super(meta);
-    }
+  public BlockStairsBrick(int meta) { super(meta); }
 
-    @Override
-    public int getId() {
-        return BRICK_STAIRS;
-    }
+  @Override
+  public int getId() {
+    return BRICK_STAIRS;
+  }
 
-    @Override
-    public double getHardness() {
-        return 2;
-    }
+  @Override
+  public double getHardness() {
+    return 2;
+  }
 
-    @Override
-    public double getResistance() {
-        return 30;
-    }
+  @Override
+  public double getResistance() {
+    return 30;
+  }
 
-    @Override
-    public int getToolType() {
-        return ItemTool.TYPE_PICKAXE;
-    }
+  @Override
+  public int getToolType() {
+    return ItemTool.TYPE_PICKAXE;
+  }
 
-    @Override
-    public String getName() {
-        return "Brick Stairs";
-    }
+  @Override
+  public String getName() {
+    return "Brick Stairs";
+  }
 
-    @Override
-    public BlockColor getColor() {
-        return BlockColor.STONE_BLOCK_COLOR;
-    }
-
+  @Override
+  public BlockColor getColor() {
+    return BlockColor.STONE_BLOCK_COLOR;
+  }
 }

@@ -2,7 +2,6 @@ package cn.nukkit.raknet.protocol;
 
 import cn.nukkit.utils.Binary;
 import cn.nukkit.utils.BinaryStream;
-
 import java.util.TreeMap;
 
 /**
@@ -10,98 +9,94 @@ import java.util.TreeMap;
  */
 public abstract class AcknowledgePacket extends Packet {
 
-    public TreeMap<Integer, Integer> packets;
+  public TreeMap<Integer, Integer> packets;
 
-    @Override
-    public void encode() {
-        super.encode();
-        int count = this.packets.size();
-        int[] packets = new int[count];
+  @Override
+  public void encode() {
+    super.encode();
+    int count = this.packets.size();
+    int[] packets = new int[count];
 
-        int index = 0;
-        for (int i : this.packets.values()) {
-            packets[index++] = i;
+    int index = 0;
+    for (int i : this.packets.values()) {
+      packets[index++] = i;
+    }
+    short records = 0;
+    BinaryStream payload = new BinaryStream();
+
+    if (count > 0) {
+      int pointer = 1;
+      int start = packets[0];
+      int last = packets[0];
+
+      while (pointer < count) {
+        int current = packets[pointer++];
+        int diff = current - last;
+        if (diff == 1) {
+          last = current;
+        } else if (diff > 1) {
+
+          if (start == last) {
+            payload.putByte((byte)0x01);
+            payload.put(Binary.writeLTriad(start));
+            start = last = current;
+          } else {
+            payload.putByte((byte)0x00);
+            payload.put(Binary.writeLTriad(start));
+            payload.put(Binary.writeLTriad(last));
+            start = last = current;
+          }
+          ++records;
         }
-        short records = 0;
-        BinaryStream payload = new BinaryStream();
+      }
 
-        if (count > 0) {
-            int pointer = 1;
-            int start = packets[0];
-            int last = packets[0];
+      if (start == last) {
+        payload.putByte((byte)0x01);
+        payload.put(Binary.writeLTriad(start));
+      } else {
+        payload.putByte((byte)0x00);
+        payload.put(Binary.writeLTriad(start));
+        payload.put(Binary.writeLTriad(last));
+      }
+      ++records;
+    }
 
-            while (pointer < count) {
-                int current = packets[pointer++];
-                int diff = current - last;
-                if (diff == 1) {
-                    last = current;
-                } else if (diff > 1) {
+    this.putShort(records);
+    this.buffer = Binary.appendBytes(this.buffer, payload.getBuffer());
+  }
 
-                    if (start == last) {
-                        payload.putByte((byte) 0x01);
-                        payload.put(Binary.writeLTriad(start));
-                        start = last = current;
-                    } else {
-                        payload.putByte((byte) 0x00);
-                        payload.put(Binary.writeLTriad(start));
-                        payload.put(Binary.writeLTriad(last));
-                        start = last = current;
-                    }
-                    ++records;
-                }
-            }
-
-            if (start == last) {
-                payload.putByte((byte) 0x01);
-                payload.put(Binary.writeLTriad(start));
-            } else {
-                payload.putByte((byte) 0x00);
-                payload.put(Binary.writeLTriad(start));
-                payload.put(Binary.writeLTriad(last));
-            }
-            ++records;
+  @Override
+  public void decode() {
+    super.decode();
+    short count = this.getSignedShort();
+    this.packets = new TreeMap<>();
+    int cnt = 0;
+    for (int i = 0; i < count && !this.feof() && cnt < 4096; ++i) {
+      if (this.getByte() == 0) {
+        int start = this.getLTriad();
+        int end = this.getLTriad();
+        if ((end - start) > 512) {
+          end = start + 512;
         }
-
-        this.putShort(records);
-        this.buffer = Binary.appendBytes(
-                this.buffer,
-                payload.getBuffer()
-        );
-    }
-
-    @Override
-    public void decode() {
-        super.decode();
-        short count = this.getSignedShort();
-        this.packets = new TreeMap<>();
-        int cnt = 0;
-        for (int i = 0; i < count && !this.feof() && cnt < 4096; ++i) {
-            if (this.getByte() == 0) {
-                int start = this.getLTriad();
-                int end = this.getLTriad();
-                if ((end - start) > 512) {
-                    end = start + 512;
-                }
-                for (int c = start; c <= end; ++c) {
-                    packets.put(cnt++, c);
-                }
-            } else {
-                this.packets.put(cnt++, this.getLTriad());
-            }
+        for (int c = start; c <= end; ++c) {
+          packets.put(cnt++, c);
         }
+      } else {
+        this.packets.put(cnt++, this.getLTriad());
+      }
     }
+  }
 
-    @Override
-    public Packet clean() {
-        this.packets = new TreeMap<>();
-        return super.clean();
-    }
+  @Override
+  public Packet clean() {
+    this.packets = new TreeMap<>();
+    return super.clean();
+  }
 
-    @Override
-    public AcknowledgePacket clone() throws CloneNotSupportedException {
-        AcknowledgePacket packet = (AcknowledgePacket) super.clone();
-        packet.packets = new TreeMap<>(this.packets);
-        return packet;
-    }
-
+  @Override
+  public AcknowledgePacket clone() throws CloneNotSupportedException {
+    AcknowledgePacket packet = (AcknowledgePacket)super.clone();
+    packet.packets = new TreeMap<>(this.packets);
+    return packet;
+  }
 }

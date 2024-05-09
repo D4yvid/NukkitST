@@ -5,6 +5,5 @@ package cn.nukkit.permission;
  */
 public interface PermissionRemovedExecutor {
 
-    void attachmentRemoved(PermissionAttachment attachment);
-
+  void attachmentRemoved(PermissionAttachment attachment);
 }

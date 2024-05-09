@@ -5,6 +5,4 @@ import cn.nukkit.event.Event;
 /**
  * author: MagicDroidX Nukkit Project
  */
-abstract public class ServerEvent extends Event {
-
-}
+abstract public class ServerEvent extends Event {}

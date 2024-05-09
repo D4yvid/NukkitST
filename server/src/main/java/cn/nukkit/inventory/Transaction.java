@@ -7,14 +7,13 @@ import cn.nukkit.item.Item;
  */
 public interface Transaction {
 
-    Inventory getInventory();
+  Inventory getInventory();
 
-    int getSlot();
+  int getSlot();
 
-    Item getSourceItem();
+  Item getSourceItem();
 
-    Item getTargetItem();
+  Item getTargetItem();
 
-    long getCreationTime();
-
+  long getCreationTime();
 }

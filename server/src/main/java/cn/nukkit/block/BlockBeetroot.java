@@ -7,36 +7,27 @@ import cn.nukkit.item.Item;
  */
 public class BlockBeetroot extends BlockCrops {
 
-    public BlockBeetroot() {
-        this(0);
-    }
+  public BlockBeetroot() { this(0); }
 
-    public BlockBeetroot(int meta) {
-        super(meta);
-    }
+  public BlockBeetroot(int meta) { super(meta); }
 
-    @Override
-    public int getId() {
-        return BEETROOT_BLOCK;
-    }
+  @Override
+  public int getId() {
+    return BEETROOT_BLOCK;
+  }
 
-    @Override
-    public String getName() {
-        return "Beetroot Block";
-    }
+  @Override
+  public String getName() {
+    return "Beetroot Block";
+  }
 
-    @Override
-    public int[][] getDrops(Item item) {
-        if (this.meta >= 0x07) {
-            return new int[][]{
-                    {Item.BEETROOT, 0, 1},
-                    {Item.BEETROOT_SEEDS, 0, (int) (4d * Math.random())}
-            };
-        } else {
-            return new int[][]{
-                    {Item.BEETROOT_SEEDS, 0, 1}
-            };
-        }
+  @Override
+  public int[][] getDrops(Item item) {
+    if (this.meta >= 0x07) {
+      return new int[][] {{Item.BEETROOT, 0, 1},
+                          {Item.BEETROOT_SEEDS, 0, (int)(4d * Math.random())}};
+    } else {
+      return new int[][] {{Item.BEETROOT_SEEDS, 0, 1}};
     }
-
+  }
 }

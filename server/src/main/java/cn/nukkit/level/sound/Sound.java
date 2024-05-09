@@ -8,29 +8,13 @@ import cn.nukkit.network.protocol.DataPacket;
  */
 public abstract class Sound extends Vector3 {
 
-    public Sound() {
-        super(0, 0, 0);
-    }
+  public Sound() { super(0, 0, 0); }
 
-    public Sound(double x) {
-        super(x, 0, 0);
-    }
+  public Sound(double x) { super(x, 0, 0); }
 
-    public Sound(
-            double x,
-            double y
-    ) {
-        super(x, y, 0);
-    }
+  public Sound(double x, double y) { super(x, y, 0); }
 
-    public Sound(
-            double x,
-            double y,
-            double z
-    ) {
-        super(x, y, z);
-    }
+  public Sound(double x, double y, double z) { super(x, y, z); }
 
-    abstract public DataPacket[] encode();
-
+  abstract public DataPacket[] encode();
 }

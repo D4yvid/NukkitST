@@ -7,29 +7,22 @@ import cn.nukkit.item.Item;
  */
 public class BlockRailDetector extends BlockRail {
 
-    public BlockRailDetector() {
-        this(0);
-    }
+  public BlockRailDetector() { this(0); }
 
-    public BlockRailDetector(int meta) {
-        super(meta);
-    }
+  public BlockRailDetector(int meta) { super(meta); }
 
-    @Override
-    public int getId() {
-        return DETECTOR_RAIL;
-    }
+  @Override
+  public int getId() {
+    return DETECTOR_RAIL;
+  }
 
-    @Override
-    public String getName() {
-        return "Detector Rail";
-    }
+  @Override
+  public String getName() {
+    return "Detector Rail";
+  }
 
-    @Override
-    public int[][] getDrops(Item item) {
-        return new int[][]{
-                {Item.DETECTOR_RAIL, 0, 1}
-        };
-    }
-
+  @Override
+  public int[][] getDrops(Item item) {
+    return new int[][] {{Item.DETECTOR_RAIL, 0, 1}};
+  }
 }

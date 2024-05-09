@@ -1,21 +1,25 @@
 #include <jni.h>
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <string.h>
 #include <unistd.h>
 #include <zlib.h>
 
-#define MIN(a, b) ((a) < (b) ? (a) : (b))
-#define CHUNK_SIZE 512000 // 64K -- 256K
+#define MIN(a, b)  ((a) < (b) ? (a) : (b))
+#define CHUNK_SIZE 512000  // 64K -- 256K
 
-static bool native_deflate(uint8_t *in, size_t in_len, uint8_t **out, size_t *out_len, int compression_level);
+static bool native_deflate(
+    uint8_t *in, size_t in_len, uint8_t **out, size_t *out_len, int compression_level
+);
 static bool native_inflate(uint8_t *in, size_t in_len, uint8_t **out, size_t *out_len);
 
 JNIEXPORT jbyteArray JNICALL Java_cn_nukkit_natives_ZlibNative_deflate(
-    JNIEnv *env, jobject this, jbyteArray input, jint compression_level) {
+    JNIEnv *env, jobject this, jbyteArray input, jint compression_level
+)
+{
   jbyteArray output_arr = NULL;
   size_t input_len, output_len;
   uint8_t *input_data, *output_data;
@@ -28,14 +32,16 @@ JNIEXPORT jbyteArray JNICALL Java_cn_nukkit_natives_ZlibNative_deflate(
   }
 
   output_arr = (*env)->NewByteArray(env, output_len);
-  (*env)->SetByteArrayRegion(env, output_arr, 0, output_len, (const jbyte *) output_data);
+  (*env)->SetByteArrayRegion(env, output_arr, 0, output_len, (const jbyte *)output_data);
 
   free(output_data);
 
   return output_arr;
 }
 
-JNIEXPORT jbyteArray JNICALL Java_cn_nukkit_natives_ZlibNative_inflate(JNIEnv *env, jobject this, jbyteArray input) {
+JNIEXPORT jbyteArray JNICALL
+Java_cn_nukkit_natives_ZlibNative_inflate(JNIEnv *env, jobject this, jbyteArray input)
+{
   jbyteArray output_arr = NULL;
   size_t input_len, output_len;
   uint8_t *input_data, *output_data;
@@ -48,20 +54,22 @@ JNIEXPORT jbyteArray JNICALL Java_cn_nukkit_natives_ZlibNative_inflate(JNIEnv *e
   }
 
   output_arr = (*env)->NewByteArray(env, output_len);
-  (*env)->SetByteArrayRegion(env, output_arr, 0, output_len, (const jbyte *) output_data);
+  (*env)->SetByteArrayRegion(env, output_arr, 0, output_len, (const jbyte *)output_data);
 
   free(output_data);
 
   return output_arr;
 }
 
-bool native_deflate(uint8_t *in, size_t in_len, uint8_t **out, size_t *out_len, int compression_level)
+bool native_deflate(
+    uint8_t *in, size_t in_len, uint8_t **out, size_t *out_len, int compression_level
+)
 {
-  static uint8_t chunk[CHUNK_SIZE] = { 0 };
+  static uint8_t chunk[CHUNK_SIZE] = {0};
   uint8_t *in_ptr = NULL, *out_ptr = NULL;
   int32_t result = 0;
   size_t len = 0, written = 0, flush = 0, offset = 0;
-  z_stream stream = { 0 };
+  z_stream stream = {0};
 
   stream.zalloc = NULL;
   stream.zfree = NULL;
@@ -91,8 +99,7 @@ bool native_deflate(uint8_t *in, size_t in_len, uint8_t **out, size_t *out_len, 
       if (result == Z_STREAM_ERROR) {
         fprintf(stderr, "CRITICAL: could not deflate buffer: zlib error %d\n", result);
 
-        if (out_ptr)
-          free(out_ptr);
+        if (out_ptr) free(out_ptr);
 
         deflateEnd(&stream);
 
@@ -131,11 +138,11 @@ bool native_deflate(uint8_t *in, size_t in_len, uint8_t **out, size_t *out_len, 
 
 bool native_inflate(uint8_t *in, size_t in_len, uint8_t **out, size_t *out_len)
 {
-  static uint8_t chunk[CHUNK_SIZE] = { 0 };
+  static uint8_t chunk[CHUNK_SIZE] = {0};
   int32_t result = 0;
   uint8_t *in_ptr = NULL, *out_ptr = NULL;
   size_t written = 0, len = 0, offset = 0;
-  z_stream stream = { 0 };
+  z_stream stream = {0};
 
   stream.zalloc = NULL;
   stream.zfree = NULL;
@@ -164,26 +171,23 @@ bool native_inflate(uint8_t *in, size_t in_len, uint8_t **out, size_t *out_len)
       if (result == Z_STREAM_ERROR) {
         fprintf(stderr, "CRITICAL: could not inflate buffer: zlib error %d\n", result);
 
-        if (out_ptr)
-          free(out_ptr);
+        if (out_ptr) free(out_ptr);
 
         inflateEnd(&stream);
 
         return false;
       }
 
-      switch (result)
-      {
-      case Z_NEED_DICT:
-      case Z_DATA_ERROR:
-      case Z_MEM_ERROR:
-        fprintf(stderr, "CRITICAL: could not inflate buffer: zlib error %d\n", result);
+      switch (result) {
+        case Z_NEED_DICT:
+        case Z_DATA_ERROR:
+        case Z_MEM_ERROR:
+          fprintf(stderr, "CRITICAL: could not inflate buffer: zlib error %d\n", result);
 
-        if (out_ptr)
-          free(out_ptr);
+          if (out_ptr) free(out_ptr);
 
-        inflateEnd(&stream);
-        return false;
+          inflateEnd(&stream);
+          return false;
       }
 
       written = CHUNK_SIZE - stream.avail_out;

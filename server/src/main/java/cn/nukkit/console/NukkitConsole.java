@@ -2,74 +2,74 @@ package cn.nukkit.console;
 
 import cn.nukkit.Server;
 import cn.nukkit.event.server.ServerCommandEvent;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.atomic.AtomicBoolean;
 import lombok.Getter;
 import lombok.SneakyThrows;
 import net.minecrell.terminalconsole.SimpleTerminalConsole;
 import org.jline.reader.LineReader;
 import org.jline.reader.LineReaderBuilder;
 
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.atomic.AtomicBoolean;
-
 @Getter
 public class NukkitConsole extends SimpleTerminalConsole {
 
-    private final Server server;
+  private final Server server;
 
-    private final BlockingQueue<String> consoleQueue;
+  private final BlockingQueue<String> consoleQueue;
 
-    private final AtomicBoolean executingCommands;
+  private final AtomicBoolean executingCommands;
 
-    public NukkitConsole(Server server) {
-        this.server = server;
+  public NukkitConsole(Server server) {
+    this.server = server;
 
-        this.consoleQueue = new LinkedBlockingQueue<>();
-        this.executingCommands = new AtomicBoolean(false);
+    this.consoleQueue = new LinkedBlockingQueue<>();
+    this.executingCommands = new AtomicBoolean(false);
+  }
+
+  @Override
+  protected boolean isRunning() {
+    return this.getServer().isRunning();
+  }
+
+  @Override
+  protected void runCommand(String command) {
+    if (!(this.getExecutingCommands().get())) {
+      this.getConsoleQueue().add(command);
+      return;
     }
 
-    @Override
-    protected boolean isRunning() {
-        return this.getServer().isRunning();
-    }
+    ServerCommandEvent event = new ServerCommandEvent(this.getServer().getConsoleSender(), command);
+    this.getServer().getPluginManager().callEvent(event);
 
-    @Override
-    protected void runCommand(String command) {
-        if (!(this.getExecutingCommands().get())) {
-            this.getConsoleQueue().add(command);
-            return;
-        }
+    if (!(event.isCancelled()))
+      this.getServer().getScheduler().scheduleTask(
+          () -> this.getServer().dispatchCommand(event.getSender(), event.getCommand()));
+  }
 
-        ServerCommandEvent event = new ServerCommandEvent(this.getServer().getConsoleSender(), command);
-        this.getServer().getPluginManager().callEvent(event);
+  @SneakyThrows
+  public String readConsoleLine() {
+    return this.getConsoleQueue().take();
+  }
 
-        if (!(event.isCancelled()))
-            this.getServer().getScheduler().scheduleTask(() -> this.getServer().dispatchCommand(event.getSender(), event.getCommand()));
-    }
+  @Override
+  protected LineReader buildReader(LineReaderBuilder builder) {
+    builder.completer(new NukkitConsoleAccepter(this.getServer()));
+    builder.appName("Nukkit");
+    builder.option(LineReader.Option.HISTORY_BEEP, false);
+    builder.option(LineReader.Option.HISTORY_IGNORE_DUPS, true);
+    builder.option(LineReader.Option.HISTORY_IGNORE_SPACE, true);
+    return super.buildReader(builder);
+  }
 
-    @SneakyThrows
-    public String readConsoleLine() {
-        return this.getConsoleQueue().take();
-    }
+  @Override
+  protected void shutdown() {
+    this.getServer().shutdown();
+  }
 
-    @Override
-    protected LineReader buildReader(LineReaderBuilder builder) {
-        builder.completer(new NukkitConsoleAccepter(this.getServer()));
-        builder.appName("Nukkit");
-        builder.option(LineReader.Option.HISTORY_BEEP, false);
-        builder.option(LineReader.Option.HISTORY_IGNORE_DUPS, true);
-        builder.option(LineReader.Option.HISTORY_IGNORE_SPACE, true);
-        return super.buildReader(builder);
-    }
-
-    @Override
-    protected void shutdown() {
-        this.getServer().shutdown();
-    }
-
-    public void setExecutingCommands(boolean executingCommands) {
-        if (this.getExecutingCommands().compareAndSet(!executingCommands, executingCommands) && executingCommands)
-            this.getConsoleQueue().clear();
-    }
-
+  public void setExecutingCommands(boolean executingCommands) {
+    if (this.getExecutingCommands().compareAndSet(!executingCommands, executingCommands) &&
+        executingCommands)
+      this.getConsoleQueue().clear();
+  }
 }

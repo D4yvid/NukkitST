@@ -5,19 +5,9 @@ package cn.nukkit.item;
  */
 public class ItemClownfish extends ItemFish {
 
-    public ItemClownfish() {
-        this(0, 1);
-    }
+  public ItemClownfish() { this(0, 1); }
 
-    public ItemClownfish(Integer meta) {
-        this(meta, 1);
-    }
+  public ItemClownfish(Integer meta) { this(meta, 1); }
 
-    public ItemClownfish(
-            Integer meta,
-            int count
-    ) {
-        super(CLOWNFISH, meta, count, "Clownfish");
-    }
-
+  public ItemClownfish(Integer meta, int count) { super(CLOWNFISH, meta, count, "Clownfish"); }
 }

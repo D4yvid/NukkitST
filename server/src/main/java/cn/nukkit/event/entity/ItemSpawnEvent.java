@@ -8,19 +8,14 @@ import cn.nukkit.event.HandlerList;
  */
 public class ItemSpawnEvent extends EntityEvent {
 
-    private static final HandlerList handlers = new HandlerList();
+  private static final HandlerList handlers = new HandlerList();
 
-    public ItemSpawnEvent(EntityItem item) {
-        this.entity = item;
-    }
+  public ItemSpawnEvent(EntityItem item) { this.entity = item; }
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+  public static HandlerList getHandlers() { return handlers; }
 
-    @Override
-    public EntityItem getEntity() {
-        return (EntityItem) this.entity;
-    }
-
+  @Override
+  public EntityItem getEntity() {
+    return (EntityItem)this.entity;
+  }
 }

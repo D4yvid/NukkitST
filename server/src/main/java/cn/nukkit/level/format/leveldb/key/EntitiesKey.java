@@ -5,18 +5,9 @@ package cn.nukkit.level.format.leveldb.key;
  */
 public class EntitiesKey extends BaseKey {
 
-    protected EntitiesKey(
-            int chunkX,
-            int chunkZ
-    ) {
-        super(chunkX, chunkZ, DATA_ENTITIES);
-    }
+  protected EntitiesKey(int chunkX, int chunkZ) { super(chunkX, chunkZ, DATA_ENTITIES); }
 
-    public static EntitiesKey create(
-            int chunkX,
-            int chunkZ
-    ) {
-        return new EntitiesKey(chunkX, chunkZ);
-    }
-
+  public static EntitiesKey create(int chunkX, int chunkZ) {
+    return new EntitiesKey(chunkX, chunkZ);
+  }
 }

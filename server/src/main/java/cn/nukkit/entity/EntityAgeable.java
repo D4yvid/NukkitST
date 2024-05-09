@@ -5,10 +5,9 @@ package cn.nukkit.entity;
  */
 public interface EntityAgeable {
 
-    int DATA_AGEABLE_FLAGS = 14;
+  int DATA_AGEABLE_FLAGS = 14;
 
-    int DATA_FLAG_BABY = 0;
+  int DATA_FLAG_BABY = 0;
 
-    boolean isBaby();
-
+  boolean isBaby();
 }

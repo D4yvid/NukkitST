@@ -9,18 +9,13 @@ import cn.nukkit.inventory.Inventory;
  */
 public abstract class InventoryEvent extends Event {
 
-    protected final Inventory inventory;
+  protected final Inventory inventory;
 
-    public InventoryEvent(Inventory inventory) {
-        this.inventory = inventory;
-    }
+  public InventoryEvent(Inventory inventory) { this.inventory = inventory; }
 
-    public Inventory getInventory() {
-        return inventory;
-    }
+  public Inventory getInventory() { return inventory; }
 
-    public Player[] getViewers() {
-        return this.inventory.getViewers().stream().toArray(Player[]::new);
-    }
-
+  public Player[] getViewers() {
+    return this.inventory.getViewers().stream().toArray(Player[] ::new);
+  }
 }

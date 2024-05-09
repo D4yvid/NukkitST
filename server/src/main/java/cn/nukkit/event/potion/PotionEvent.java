@@ -8,18 +8,11 @@ import cn.nukkit.potion.Potion;
  */
 public abstract class PotionEvent extends Event {
 
-    private Potion potion;
+  private Potion potion;
 
-    public PotionEvent(Potion potion) {
-        this.potion = potion;
-    }
+  public PotionEvent(Potion potion) { this.potion = potion; }
 
-    public Potion getPotion() {
-        return potion;
-    }
+  public Potion getPotion() { return potion; }
 
-    public void setPotion(Potion potion) {
-        this.potion = potion;
-    }
-
+  public void setPotion(Potion potion) { this.potion = potion; }
 }

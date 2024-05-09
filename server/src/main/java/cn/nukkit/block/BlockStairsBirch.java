@@ -5,22 +5,17 @@ package cn.nukkit.block;
  */
 public class BlockStairsBirch extends BlockStairsWood {
 
-    public BlockStairsBirch() {
-        this(0);
-    }
+  public BlockStairsBirch() { this(0); }
 
-    public BlockStairsBirch(int meta) {
-        super(meta);
-    }
+  public BlockStairsBirch(int meta) { super(meta); }
 
-    @Override
-    public int getId() {
-        return BIRCH_WOOD_STAIRS;
-    }
+  @Override
+  public int getId() {
+    return BIRCH_WOOD_STAIRS;
+  }
 
-    @Override
-    public String getName() {
-        return "Birch Wood Stairs";
-    }
-
+  @Override
+  public String getName() {
+    return "Birch Wood Stairs";
+  }
 }

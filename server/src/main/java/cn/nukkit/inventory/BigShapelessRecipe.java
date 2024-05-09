@@ -7,8 +7,5 @@ import cn.nukkit.item.Item;
  */
 public class BigShapelessRecipe extends ShapelessRecipe {
 
-    public BigShapelessRecipe(Item result) {
-        super(result);
-    }
-
+  public BigShapelessRecipe(Item result) { super(result); }
 }

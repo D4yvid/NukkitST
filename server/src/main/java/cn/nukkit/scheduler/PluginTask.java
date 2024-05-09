@@ -1,22 +1,17 @@
 package cn.nukkit.scheduler;
 
-
 import cn.nukkit.plugin.Plugin;
 
 /**
  * 插件创建的任务。<br>Task that created by a plugin.
  * <p>
  * <p>对于插件作者，通过继承这个类创建的任务，可以在插件被禁用时不被执行。<br>
- * For plugin developers: Tasks that extend this class, won't be executed when the plugin is disabled.</p>
- * <p>
- * <p>另外，继承这个类的任务可以通过{@link #getOwner()}来获得这个任务所属的插件。<br>
- * Otherwise, tasks that extend this class can use {@link #getOwner()} to get its owner.</p>
- * <p>
- * <p>下面是一个插件创建任务的例子：<br>An example for plugin create a task:
- * <pre>
- *     public class ExampleTask extends PluginTask&lt;ExamplePlugin&gt;{
- *         public ExampleTask(ExamplePlugin plugin){
- *             super(plugin);
+ * For plugin developers: Tasks that extend this class, won't be executed when the plugin is
+ * disabled.</p> <p> <p>另外，继承这个类的任务可以通过{@link
+ * #getOwner()}来获得这个任务所属的插件。<br> Otherwise, tasks that extend this class can use {@link
+ * #getOwner()} to get its owner.</p> <p> <p>下面是一个插件创建任务的例子：<br>An example for plugin
+ * create a task: <pre> public class ExampleTask extends PluginTask&lt;ExamplePlugin&gt;{ public
+ * ExampleTask(ExamplePlugin plugin){ super(plugin);
  *         }
  *
  *        {@code @Override}
@@ -36,26 +31,21 @@ import cn.nukkit.plugin.Plugin;
  */
 public abstract class PluginTask<T extends Plugin> extends Task {
 
-    protected final T owner;
+  protected final T owner;
 
-    /**
-     * 构造一个插件拥有的任务的方法。<br>Constructs a plugin-owned task.
-     *
-     * @param owner 这个任务的所有者插件。<br>The plugin object that owns this task.
-     * @since Nukkit 1.0 | Nukkit API 1.0.0
-     */
-    public PluginTask(T owner) {
-        this.owner = owner;
-    }
+  /**
+   * 构造一个插件拥有的任务的方法。<br>Constructs a plugin-owned task.
+   *
+   * @param owner 这个任务的所有者插件。<br>The plugin object that owns this task.
+   * @since Nukkit 1.0 | Nukkit API 1.0.0
+   */
+  public PluginTask(T owner) { this.owner = owner; }
 
-    /**
-     * 返回这个任务的所有者插件。<br> Returns the owner of this task.
-     *
-     * @return 这个任务的所有者插件。<br>The plugin that owns this task.
-     * @since Nukkit 1.0 | Nukkit API 1.0.0
-     */
-    public final T getOwner() {
-        return this.owner;
-    }
-
+  /**
+   * 返回这个任务的所有者插件。<br> Returns the owner of this task.
+   *
+   * @return 这个任务的所有者插件。<br>The plugin that owns this task.
+   * @since Nukkit 1.0 | Nukkit API 1.0.0
+   */
+  public final T getOwner() { return this.owner; }
 }

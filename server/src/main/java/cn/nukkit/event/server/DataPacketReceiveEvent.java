@@ -10,30 +10,20 @@ import cn.nukkit.network.protocol.DataPacket;
  */
 public class DataPacketReceiveEvent extends ServerEvent implements Cancellable {
 
-    private static final HandlerList handlers = new HandlerList();
+  private static final HandlerList handlers = new HandlerList();
 
-    private final DataPacket packet;
+  private final DataPacket packet;
 
-    private final Player player;
+  private final Player player;
 
-    public DataPacketReceiveEvent(
-            Player player,
-            DataPacket packet
-    ) {
-        this.packet = packet;
-        this.player = player;
-    }
+  public DataPacketReceiveEvent(Player player, DataPacket packet) {
+    this.packet = packet;
+    this.player = player;
+  }
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+  public static HandlerList getHandlers() { return handlers; }
 
-    public DataPacket getPacket() {
-        return packet;
-    }
+  public DataPacket getPacket() { return packet; }
 
-    public Player getPlayer() {
-        return player;
-    }
-
+  public Player getPlayer() { return player; }
 }

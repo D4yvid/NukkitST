@@ -5,6 +5,5 @@ package cn.nukkit.entity;
  */
 public interface EntityExplosive {
 
-    void explode();
-
+  void explode();
 }

@@ -7,17 +7,13 @@ import cn.nukkit.Player;
  */
 public class FoodNormal extends Food {
 
-    public FoodNormal(
-            int restoreFood,
-            float restoreSaturation
-    ) {
-        this.setRestoreFood(restoreFood);
-        this.setRestoreSaturation(restoreSaturation);
-    }
+  public FoodNormal(int restoreFood, float restoreSaturation) {
+    this.setRestoreFood(restoreFood);
+    this.setRestoreSaturation(restoreSaturation);
+  }
 
-    @Override
-    protected boolean onEatenBy(Player player) {
-        return super.onEatenBy(player);
-    }
-
+  @Override
+  protected boolean onEatenBy(Player player) {
+    return super.onEatenBy(player);
+  }
 }

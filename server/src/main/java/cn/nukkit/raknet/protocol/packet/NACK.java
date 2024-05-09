@@ -8,20 +8,18 @@ import cn.nukkit.raknet.protocol.Packet;
  */
 public class NACK extends AcknowledgePacket {
 
-    public static final byte ID = (byte) 0xa0;
+  public static final byte ID = (byte)0xa0;
+
+  @Override
+  public byte getID() {
+    return ID;
+  }
+
+  public static final class Factory implements Packet.PacketFactory {
 
     @Override
-    public byte getID() {
-        return ID;
+    public Packet create() {
+      return new NACK();
     }
-
-    public static final class Factory implements Packet.PacketFactory {
-
-        @Override
-        public Packet create() {
-            return new NACK();
-        }
-
-    }
-
+  }
 }

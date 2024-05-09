@@ -8,15 +8,9 @@ import cn.nukkit.network.protocol.LevelEventPacket;
  */
 public class ItemFrameItemRotated extends GenericSound {
 
-    public ItemFrameItemRotated(Vector3 pos) {
-        this(pos, 0);
-    }
+  public ItemFrameItemRotated(Vector3 pos) { this(pos, 0); }
 
-    public ItemFrameItemRotated(
-            Vector3 pos,
-            float pitch
-    ) {
-        super(pos, LevelEventPacket.EVENT_SOUND_ITEM_FRAME_ITEM_ROTATED, pitch);
-    }
-
+  public ItemFrameItemRotated(Vector3 pos, float pitch) {
+    super(pos, LevelEventPacket.EVENT_SOUND_ITEM_FRAME_ITEM_ROTATED, pitch);
+  }
 }

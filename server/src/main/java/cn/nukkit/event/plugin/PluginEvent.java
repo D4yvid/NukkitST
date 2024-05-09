@@ -9,20 +9,13 @@ import cn.nukkit.plugin.Plugin;
  */
 public class PluginEvent extends Event {
 
-    private static final HandlerList handlers = new HandlerList();
+  private static final HandlerList handlers = new HandlerList();
 
-    private final Plugin plugin;
+  private final Plugin plugin;
 
-    public PluginEvent(Plugin plugin) {
-        this.plugin = plugin;
-    }
+  public PluginEvent(Plugin plugin) { this.plugin = plugin; }
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+  public static HandlerList getHandlers() { return handlers; }
 
-    public Plugin getPlugin() {
-        return plugin;
-    }
-
+  public Plugin getPlugin() { return plugin; }
 }

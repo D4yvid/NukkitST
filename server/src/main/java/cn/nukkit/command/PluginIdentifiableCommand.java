@@ -7,6 +7,5 @@ import cn.nukkit.plugin.Plugin;
  */
 public interface PluginIdentifiableCommand {
 
-    Plugin getPlugin();
-
+  Plugin getPlugin();
 }

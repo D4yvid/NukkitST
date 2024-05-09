@@ -8,20 +8,18 @@ import cn.nukkit.raknet.protocol.Packet;
  */
 public class DATA_PACKET_5 extends DataPacket {
 
-    public static final byte ID = (byte) 0x85;
+  public static final byte ID = (byte)0x85;
+
+  @Override
+  public byte getID() {
+    return ID;
+  }
+
+  public static final class Factory implements Packet.PacketFactory {
 
     @Override
-    public byte getID() {
-        return ID;
+    public Packet create() {
+      return new DATA_PACKET_5();
     }
-
-    public static final class Factory implements Packet.PacketFactory {
-
-        @Override
-        public Packet create() {
-            return new DATA_PACKET_5();
-        }
-
-    }
-
+  }
 }

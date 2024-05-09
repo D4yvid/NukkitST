@@ -5,19 +5,11 @@ package cn.nukkit.item;
  */
 public class ItemSalmonCooked extends ItemFish {
 
-    public ItemSalmonCooked() {
-        this(0, 1);
-    }
+  public ItemSalmonCooked() { this(0, 1); }
 
-    public ItemSalmonCooked(Integer meta) {
-        this(meta, 1);
-    }
+  public ItemSalmonCooked(Integer meta) { this(meta, 1); }
 
-    public ItemSalmonCooked(
-            Integer meta,
-            int count
-    ) {
-        super(COOKED_SALMON, meta, count, "Cooked Salmon");
-    }
-
+  public ItemSalmonCooked(Integer meta, int count) {
+    super(COOKED_SALMON, meta, count, "Cooked Salmon");
+  }
 }

@@ -8,15 +8,9 @@ import cn.nukkit.network.protocol.LevelEventPacket;
  */
 public class ZombieInfectSound extends GenericSound {
 
-    public ZombieInfectSound(Vector3 pos) {
-        this(pos, 0);
-    }
+  public ZombieInfectSound(Vector3 pos) { this(pos, 0); }
 
-    public ZombieInfectSound(
-            Vector3 pos,
-            float pitch
-    ) {
-        super(pos, LevelEventPacket.EVENT_SOUND_ZOMBIE_INFECT, pitch);
-    }
-
+  public ZombieInfectSound(Vector3 pos, float pitch) {
+    super(pos, LevelEventPacket.EVENT_SOUND_ZOMBIE_INFECT, pitch);
+  }
 }

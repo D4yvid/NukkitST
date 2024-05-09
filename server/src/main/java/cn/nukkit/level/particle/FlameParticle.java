@@ -7,8 +7,5 @@ import cn.nukkit.math.Vector3;
  */
 public class FlameParticle extends GenericParticle {
 
-    public FlameParticle(Vector3 pos) {
-        super(pos, Particle.TYPE_FLAME);
-    }
-
+  public FlameParticle(Vector3 pos) { super(pos, Particle.TYPE_FLAME); }
 }

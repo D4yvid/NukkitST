@@ -5,19 +5,9 @@ package cn.nukkit.item;
  */
 public class ItemRabbitFoot extends Item {
 
-    public ItemRabbitFoot() {
-        this(0, 1);
-    }
+  public ItemRabbitFoot() { this(0, 1); }
 
-    public ItemRabbitFoot(Integer meta) {
-        this(meta, 1);
-    }
+  public ItemRabbitFoot(Integer meta) { this(meta, 1); }
 
-    public ItemRabbitFoot(
-            Integer meta,
-            int count
-    ) {
-        super(RABBIT_FOOT, meta, count, "Rabbit Foot");
-    }
-
+  public ItemRabbitFoot(Integer meta, int count) { super(RABBIT_FOOT, meta, count, "Rabbit Foot"); }
 }

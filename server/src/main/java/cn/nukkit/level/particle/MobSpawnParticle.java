@@ -9,30 +9,25 @@ import cn.nukkit.network.protocol.LevelEventPacket;
  */
 public class MobSpawnParticle extends Particle {
 
-    protected final int width;
+  protected final int width;
 
-    protected final int height;
+  protected final int height;
 
-    public MobSpawnParticle(
-            Vector3 pos,
-            float width,
-            float height
-    ) {
-        super(pos.x, pos.y, pos.z);
-        this.width = (int) width;
-        this.height = (int) height;
-    }
+  public MobSpawnParticle(Vector3 pos, float width, float height) {
+    super(pos.x, pos.y, pos.z);
+    this.width = (int)width;
+    this.height = (int)height;
+  }
 
-    @Override
-    public DataPacket[] encode() {
-        LevelEventPacket packet = new LevelEventPacket();
-        packet.evid = LevelEventPacket.EVENT_PARTICLE_SPAWN;
-        packet.x = (float) this.x;
-        packet.y = (float) this.y;
-        packet.z = (float) this.z;
-        packet.data = (this.width & 0xff) + ((this.height & 0xff) << 8);
+  @Override
+  public DataPacket[] encode() {
+    LevelEventPacket packet = new LevelEventPacket();
+    packet.evid = LevelEventPacket.EVENT_PARTICLE_SPAWN;
+    packet.x = (float)this.x;
+    packet.y = (float)this.y;
+    packet.z = (float)this.z;
+    packet.data = (this.width & 0xff) + ((this.height & 0xff) << 8);
 
-        return new DataPacket[]{packet};
-    }
-
+    return new DataPacket[] {packet};
+  }
 }

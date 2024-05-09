@@ -1,7 +1,6 @@
 package cn.nukkit.block;
 
 import cn.nukkit.item.Item;
-
 import java.util.Random;
 
 /**
@@ -9,35 +8,26 @@ import java.util.Random;
  */
 public class BlockPotato extends BlockCrops {
 
-    public BlockPotato(int meta) {
-        super(meta);
-    }
+  public BlockPotato(int meta) { super(meta); }
 
-    public BlockPotato() {
-        this(0);
-    }
+  public BlockPotato() { this(0); }
 
-    @Override
-    public String getName() {
-        return "Potato Block";
-    }
+  @Override
+  public String getName() {
+    return "Potato Block";
+  }
 
-    @Override
-    public int getId() {
-        return POTATO_BLOCK;
-    }
+  @Override
+  public int getId() {
+    return POTATO_BLOCK;
+  }
 
-    @Override
-    public int[][] getDrops(Item item) {
-        if (meta >= 0x07) {
-            return new int[][]{
-                    {Item.POTATO, 0, new Random().nextInt(3) + 1}
-            };
-        } else {
-            return new int[][]{
-                    {Item.POTATO, 0, 1}
-            };
-        }
+  @Override
+  public int[][] getDrops(Item item) {
+    if (meta >= 0x07) {
+      return new int[][] {{Item.POTATO, 0, new Random().nextInt(3) + 1}};
+    } else {
+      return new int[][] {{Item.POTATO, 0, 1}};
     }
-
+  }
 }

@@ -7,12 +7,11 @@ import java.io.Serializable;
  */
 public abstract class PluginCertificate extends Thread implements Serializable {
 
-    protected transient boolean localCertificated = false;
+  protected transient boolean localCertificated = false;
 
-    protected String certificate;
+  protected String certificate;
 
-    protected boolean certificated;
+  protected boolean certificated;
 
-    protected String encryptType;
-
+  protected String encryptType;
 }

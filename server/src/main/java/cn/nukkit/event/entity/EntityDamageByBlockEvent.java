@@ -8,20 +8,12 @@ import cn.nukkit.entity.Entity;
  */
 public class EntityDamageByBlockEvent extends EntityDamageEvent {
 
-    private final Block damager;
+  private final Block damager;
 
-    public EntityDamageByBlockEvent(
-            Block damager,
-            Entity entity,
-            int cause,
-            float damage
-    ) {
-        super(entity, cause, damage);
-        this.damager = damager;
-    }
+  public EntityDamageByBlockEvent(Block damager, Entity entity, int cause, float damage) {
+    super(entity, cause, damage);
+    this.damager = damager;
+  }
 
-    public Block getDamager() {
-        return damager;
-    }
-
+  public Block getDamager() { return damager; }
 }

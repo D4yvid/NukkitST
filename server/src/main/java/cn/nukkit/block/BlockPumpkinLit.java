@@ -5,27 +5,22 @@ package cn.nukkit.block;
  */
 public class BlockPumpkinLit extends BlockPumpkin {
 
-    public BlockPumpkinLit() {
-        this(0);
-    }
+  public BlockPumpkinLit() { this(0); }
 
-    public BlockPumpkinLit(int meta) {
-        super(0);
-    }
+  public BlockPumpkinLit(int meta) { super(0); }
 
-    @Override
-    public String getName() {
-        return "Jack o'Lantern";
-    }
+  @Override
+  public String getName() {
+    return "Jack o'Lantern";
+  }
 
-    @Override
-    public int getId() {
-        return LIT_PUMPKIN;
-    }
+  @Override
+  public int getId() {
+    return LIT_PUMPKIN;
+  }
 
-    @Override
-    public int getLightLevel() {
-        return 15;
-    }
-
+  @Override
+  public int getLightLevel() {
+    return 15;
+  }
 }

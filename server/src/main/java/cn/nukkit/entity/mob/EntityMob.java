@@ -9,11 +9,5 @@ import cn.nukkit.nbt.tag.CompoundTag;
  */
 public abstract class EntityMob extends EntityCreature {
 
-    public EntityMob(
-            FullChunk chunk,
-            CompoundTag nbt
-    ) {
-        super(chunk, nbt);
-    }
-
+  public EntityMob(FullChunk chunk, CompoundTag nbt) { super(chunk, nbt); }
 }

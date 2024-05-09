@@ -5,19 +5,11 @@ package cn.nukkit.item;
  */
 public class ItemPotatoPoisonous extends ItemPotato {
 
-    public ItemPotatoPoisonous() {
-        this(0, 1);
-    }
+  public ItemPotatoPoisonous() { this(0, 1); }
 
-    public ItemPotatoPoisonous(Integer meta) {
-        this(meta, 1);
-    }
+  public ItemPotatoPoisonous(Integer meta) { this(meta, 1); }
 
-    public ItemPotatoPoisonous(
-            Integer meta,
-            int count
-    ) {
-        super(POISONOUS_POTATO, meta, count, "Poisonous Potato");
-    }
-
+  public ItemPotatoPoisonous(Integer meta, int count) {
+    super(POISONOUS_POTATO, meta, count, "Poisonous Potato");
+  }
 }

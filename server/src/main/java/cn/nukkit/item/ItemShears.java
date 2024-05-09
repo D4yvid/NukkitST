@@ -5,29 +5,19 @@ package cn.nukkit.item;
  */
 public class ItemShears extends ItemTool {
 
-    public ItemShears() {
-        this(0, 1);
-    }
+  public ItemShears() { this(0, 1); }
 
-    public ItemShears(Integer meta) {
-        this(meta, 1);
-    }
+  public ItemShears(Integer meta) { this(meta, 1); }
 
-    public ItemShears(
-            Integer meta,
-            int count
-    ) {
-        super(SHEARS, meta, count, "Shears");
-    }
+  public ItemShears(Integer meta, int count) { super(SHEARS, meta, count, "Shears"); }
 
-    @Override
-    public int getMaxDurability() {
-        return ItemTool.DURABILITY_SHEARS;
-    }
+  @Override
+  public int getMaxDurability() {
+    return ItemTool.DURABILITY_SHEARS;
+  }
 
-    @Override
-    public boolean isShears() {
-        return true;
-    }
-
+  @Override
+  public boolean isShears() {
+    return true;
+  }
 }

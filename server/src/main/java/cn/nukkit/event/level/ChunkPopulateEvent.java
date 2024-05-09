@@ -8,14 +8,9 @@ import cn.nukkit.level.format.FullChunk;
  */
 public class ChunkPopulateEvent extends ChunkEvent {
 
-    private static final HandlerList handlers = new HandlerList();
+  private static final HandlerList handlers = new HandlerList();
 
-    public ChunkPopulateEvent(FullChunk chunk) {
-        super(chunk);
-    }
+  public ChunkPopulateEvent(FullChunk chunk) { super(chunk); }
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
-
+  public static HandlerList getHandlers() { return handlers; }
 }

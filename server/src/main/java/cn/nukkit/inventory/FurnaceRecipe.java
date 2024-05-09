@@ -2,7 +2,6 @@ package cn.nukkit.inventory;
 
 import cn.nukkit.Server;
 import cn.nukkit.item.Item;
-
 import java.util.UUID;
 
 /**
@@ -10,49 +9,41 @@ import java.util.UUID;
  */
 public class FurnaceRecipe implements Recipe {
 
-    private final Item output;
+  private final Item output;
 
-    private UUID uuid = null;
+  private UUID uuid = null;
 
-    private Item ingredient;
+  private Item ingredient;
 
-    public FurnaceRecipe(
-            Item result,
-            Item ingredient
-    ) {
-        this.output = result.clone();
-        this.ingredient = ingredient.clone();
+  public FurnaceRecipe(Item result, Item ingredient) {
+    this.output = result.clone();
+    this.ingredient = ingredient.clone();
+  }
+
+  public Item getInput() { return this.ingredient.clone(); }
+
+  public void setInput(Item item) { this.ingredient = item.clone(); }
+
+  @Override
+  public UUID getId() {
+    return uuid;
+  }
+
+  @Override
+  public void setId(UUID uuid) {
+    if (this.uuid != null) {
+      throw new IllegalStateException("Id is already set");
     }
+    this.uuid = uuid;
+  }
 
-    public Item getInput() {
-        return this.ingredient.clone();
-    }
+  @Override
+  public Item getResult() {
+    return this.output.clone();
+  }
 
-    public void setInput(Item item) {
-        this.ingredient = item.clone();
-    }
-
-    @Override
-    public UUID getId() {
-        return uuid;
-    }
-
-    @Override
-    public void setId(UUID uuid) {
-        if (this.uuid != null) {
-            throw new IllegalStateException("Id is already set");
-        }
-        this.uuid = uuid;
-    }
-
-    @Override
-    public Item getResult() {
-        return this.output.clone();
-    }
-
-    @Override
-    public void registerToCraftingManager() {
-        Server.getInstance().getCraftingManager().registerFurnaceRecipe(this);
-    }
-
+  @Override
+  public void registerToCraftingManager() {
+    Server.getInstance().getCraftingManager().registerFurnaceRecipe(this);
+  }
 }

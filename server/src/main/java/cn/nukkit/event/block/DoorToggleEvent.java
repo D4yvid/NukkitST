@@ -10,28 +10,18 @@ import cn.nukkit.event.HandlerList;
  */
 public class DoorToggleEvent extends BlockUpdateEvent implements Cancellable {
 
-    private static final HandlerList handlers = new HandlerList();
+  private static final HandlerList handlers = new HandlerList();
 
-    private Player player;
+  private Player player;
 
-    public DoorToggleEvent(
-            Block block,
-            Player player
-    ) {
-        super(block);
-        this.player = player;
-    }
+  public DoorToggleEvent(Block block, Player player) {
+    super(block);
+    this.player = player;
+  }
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+  public static HandlerList getHandlers() { return handlers; }
 
-    public Player getPlayer() {
-        return player;
-    }
+  public Player getPlayer() { return player; }
 
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
-
+  public void setPlayer(Player player) { this.player = player; }
 }

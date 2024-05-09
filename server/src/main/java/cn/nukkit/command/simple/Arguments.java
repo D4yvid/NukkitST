@@ -12,8 +12,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Arguments {
 
-    int min() default 0;
+  int min() default 0;
 
-    int max() default 0;
-
+  int max() default 0;
 }

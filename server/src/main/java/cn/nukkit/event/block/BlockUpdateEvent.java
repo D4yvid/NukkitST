@@ -9,14 +9,9 @@ import cn.nukkit.event.HandlerList;
  */
 public class BlockUpdateEvent extends BlockEvent implements Cancellable {
 
-    private static final HandlerList handlers = new HandlerList();
+  private static final HandlerList handlers = new HandlerList();
 
-    public BlockUpdateEvent(Block block) {
-        super(block);
-    }
+  public BlockUpdateEvent(Block block) { super(block); }
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
-
+  public static HandlerList getHandlers() { return handlers; }
 }

@@ -5,23 +5,22 @@ package cn.nukkit.item.enchantment;
  */
 public class EnchantmentWaterBreath extends Enchantment {
 
-    protected EnchantmentWaterBreath() {
-        super(ID_WATER_BREATHING, "oxygen", 2, EnchantmentType.ARMOR_TORSO);
-    }
+  protected EnchantmentWaterBreath() {
+    super(ID_WATER_BREATHING, "oxygen", 2, EnchantmentType.ARMOR_TORSO);
+  }
 
-    @Override
-    public int getMinEnchantAbility(int level) {
-        return 10 + (level - 1) * 20;
-    }
+  @Override
+  public int getMinEnchantAbility(int level) {
+    return 10 + (level - 1) * 20;
+  }
 
-    @Override
-    public int getMaxEnchantAbility(int level) {
-        return this.getMinEnchantAbility(level) + 50;
-    }
+  @Override
+  public int getMaxEnchantAbility(int level) {
+    return this.getMinEnchantAbility(level) + 50;
+  }
 
-    @Override
-    public int getMaxLevel() {
-        return 3;
-    }
-
+  @Override
+  public int getMaxLevel() {
+    return 3;
+  }
 }

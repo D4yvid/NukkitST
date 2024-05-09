@@ -9,28 +9,18 @@ import cn.nukkit.event.HandlerList;
  */
 public class EntityCombustEvent extends EntityEvent implements Cancellable {
 
-    private static final HandlerList handlers = new HandlerList();
+  private static final HandlerList handlers = new HandlerList();
 
-    protected int duration;
+  protected int duration;
 
-    public EntityCombustEvent(
-            Entity combustee,
-            int duration
-    ) {
-        this.entity = combustee;
-        this.duration = duration;
-    }
+  public EntityCombustEvent(Entity combustee, int duration) {
+    this.entity = combustee;
+    this.duration = duration;
+  }
 
-    public static HandlerList getHandlers() {
-        return handlers;
-    }
+  public static HandlerList getHandlers() { return handlers; }
 
-    public int getDuration() {
-        return duration;
-    }
+  public int getDuration() { return duration; }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
-
+  public void setDuration(int duration) { this.duration = duration; }
 }

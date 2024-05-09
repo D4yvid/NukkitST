@@ -8,15 +8,9 @@ import cn.nukkit.network.protocol.LevelEventPacket;
  */
 public class TNTPrimeSound extends GenericSound {
 
-    public TNTPrimeSound(Vector3 pos) {
-        this(pos, 0);
-    }
+  public TNTPrimeSound(Vector3 pos) { this(pos, 0); }
 
-    public TNTPrimeSound(
-            Vector3 pos,
-            float pitch
-    ) {
-        super(pos, LevelEventPacket.EVENT_SOUND_TNT, pitch);
-    }
-
+  public TNTPrimeSound(Vector3 pos, float pitch) {
+    super(pos, LevelEventPacket.EVENT_SOUND_TNT, pitch);
+  }
 }

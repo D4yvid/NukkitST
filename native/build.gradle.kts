@@ -17,6 +17,7 @@ java {
 cmake {
     workingFolder.set(file("${buildDirectory}/cmake"))
     sourceFolder.set(file("${projectDir}/src/main/c"))
+
     defs.put("BUILD_ARCH", System.getProperty("os.arch"))
 
     buildSharedLibs.set(true)

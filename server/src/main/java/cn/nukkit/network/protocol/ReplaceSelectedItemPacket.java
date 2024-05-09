@@ -5,21 +5,16 @@ package cn.nukkit.network.protocol;
  */
 public class ReplaceSelectedItemPacket extends DataPacket {
 
-    public static final byte NETWORK_ID = ProtocolInfo.REPLACE_SELECTED_ITEM_PACKET;
+  public static final byte NETWORK_ID = ProtocolInfo.REPLACE_SELECTED_ITEM_PACKET;
 
-    @Override
-    public void decode() {
+  @Override
+  public void decode() {}
 
-    }
+  @Override
+  public void encode() {}
 
-    @Override
-    public void encode() {
-
-    }
-
-    @Override
-    public byte pid() {
-        return NETWORK_ID;
-    }
-
+  @Override
+  public byte pid() {
+    return NETWORK_ID;
+  }
 }

@@ -8,27 +8,24 @@ import cn.nukkit.utils.Binary;
  */
 public class SetEntityDataPacket extends DataPacket {
 
-    public static final byte NETWORK_ID = ProtocolInfo.SET_ENTITY_DATA_PACKET;
+  public static final byte NETWORK_ID = ProtocolInfo.SET_ENTITY_DATA_PACKET;
 
-    public long eid;
+  public long eid;
 
-    public EntityMetadata metadata;
+  public EntityMetadata metadata;
 
-    @Override
-    public byte pid() {
-        return NETWORK_ID;
-    }
+  @Override
+  public byte pid() {
+    return NETWORK_ID;
+  }
 
-    @Override
-    public void decode() {
+  @Override
+  public void decode() {}
 
-    }
-
-    @Override
-    public void encode() {
-        this.reset();
-        this.putLong(this.eid);
-        this.put(Binary.writeMetadata(this.metadata));
-    }
-
+  @Override
+  public void encode() {
+    this.reset();
+    this.putLong(this.eid);
+    this.put(Binary.writeMetadata(this.metadata));
+  }
 }

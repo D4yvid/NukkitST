@@ -8,8 +8,7 @@ import cn.nukkit.item.enchantment.EnchantmentType;
  */
 public class EnchantmentLootDigging extends EnchantmentLoot {
 
-    public EnchantmentLootDigging() {
-        super(Enchantment.ID_FORTUNE_DIGGING, "lootBonusDigger", 2, EnchantmentType.DIGGER);
-    }
-
+  public EnchantmentLootDigging() {
+    super(Enchantment.ID_FORTUNE_DIGGING, "lootBonusDigger", 2, EnchantmentType.DIGGER);
+  }
 }

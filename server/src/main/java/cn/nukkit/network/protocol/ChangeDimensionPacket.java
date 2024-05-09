@@ -5,34 +5,31 @@ package cn.nukkit.network.protocol;
  */
 public class ChangeDimensionPacket extends DataPacket {
 
-    public static final byte NETWORK_ID = ProtocolInfo.CHANGE_DIMENSION_PACKET;
+  public static final byte NETWORK_ID = ProtocolInfo.CHANGE_DIMENSION_PACKET;
 
-    public byte dimension;
+  public byte dimension;
 
-    public float x;
+  public float x;
 
-    public float y;
+  public float y;
 
-    public float z;
+  public float z;
 
-    @Override
-    public void decode() {
+  @Override
+  public void decode() {}
 
-    }
+  @Override
+  public void encode() {
+    this.reset();
+    this.putByte(dimension);
+    this.putFloat(x);
+    this.putFloat(y);
+    this.putFloat(z);
+    this.putByte((byte)0);
+  }
 
-    @Override
-    public void encode() {
-        this.reset();
-        this.putByte(dimension);
-        this.putFloat(x);
-        this.putFloat(y);
-        this.putFloat(z);
-        this.putByte((byte) 0);
-    }
-
-    @Override
-    public byte pid() {
-        return NETWORK_ID;
-    }
-
+  @Override
+  public byte pid() {
+    return NETWORK_ID;
+  }
 }

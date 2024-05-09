@@ -5,10 +5,9 @@ package cn.nukkit.plugin;
  */
 public interface Library {
 
-    String getGroupId();
+  String getGroupId();
 
-    String getArtifactId();
+  String getArtifactId();
 
-    String getVersion();
-
+  String getVersion();
 }

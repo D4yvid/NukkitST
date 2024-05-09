@@ -5,27 +5,22 @@ package cn.nukkit.block;
  */
 public class BlockWaterStill extends BlockWater {
 
-    public BlockWaterStill() {
-        super(0);
-    }
+  public BlockWaterStill() { super(0); }
 
-    public BlockWaterStill(int meta) {
-        super(meta);
-    }
+  public BlockWaterStill(int meta) { super(meta); }
 
-    @Override
-    public int getId() {
-        return STILL_WATER;
-    }
+  @Override
+  public int getId() {
+    return STILL_WATER;
+  }
 
-    @Override
-    public String getName() {
-        return "Still Water";
-    }
+  @Override
+  public String getName() {
+    return "Still Water";
+  }
 
-    @Override
-    public BlockLiquid getBlock(int meta) {
-        return new BlockWaterStill(meta);
-    }
-
+  @Override
+  public BlockLiquid getBlock(int meta) {
+    return new BlockWaterStill(meta);
+  }
 }

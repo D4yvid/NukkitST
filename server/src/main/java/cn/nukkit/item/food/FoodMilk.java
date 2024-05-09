@@ -8,12 +8,11 @@ import cn.nukkit.item.ItemBucket;
  */
 public class FoodMilk extends Food {
 
-    @Override
-    protected boolean onEatenBy(Player player) {
-        super.onEatenBy(player);
-        player.getInventory().addItem(new ItemBucket());
-        player.removeAllEffects();
-        return true;
-    }
-
+  @Override
+  protected boolean onEatenBy(Player player) {
+    super.onEatenBy(player);
+    player.getInventory().addItem(new ItemBucket());
+    player.removeAllEffects();
+    return true;
+  }
 }

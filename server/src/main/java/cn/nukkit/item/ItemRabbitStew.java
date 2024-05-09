@@ -5,19 +5,9 @@ package cn.nukkit.item;
  */
 public class ItemRabbitStew extends ItemEdible {
 
-    public ItemRabbitStew() {
-        this(0, 1);
-    }
+  public ItemRabbitStew() { this(0, 1); }
 
-    public ItemRabbitStew(Integer meta) {
-        this(meta, 1);
-    }
+  public ItemRabbitStew(Integer meta) { this(meta, 1); }
 
-    public ItemRabbitStew(
-            Integer meta,
-            int count
-    ) {
-        super(RABBIT_STEW, meta, count, "Rabbit Stew");
-    }
-
+  public ItemRabbitStew(Integer meta, int count) { super(RABBIT_STEW, meta, count, "Rabbit Stew"); }
 }

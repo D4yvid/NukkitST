@@ -8,9 +8,5 @@ import cn.nukkit.event.block.BlockUpdateEvent;
  */
 public class RedstoneUpdateEvent extends BlockUpdateEvent {
 
-    public RedstoneUpdateEvent(Block source) {
-        super(source);
-    }
-
+  public RedstoneUpdateEvent(Block source) { super(source); }
 }
-

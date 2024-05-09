@@ -5,14 +5,9 @@ package cn.nukkit.event.player;
  */
 public abstract class PlayerMessageEvent extends PlayerEvent {
 
-    protected String message;
+  protected String message;
 
-    public String getMessage() {
-        return this.message;
-    }
+  public String getMessage() { return this.message; }
 
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
+  public void setMessage(String message) { this.message = message; }
 }

@@ -5,19 +5,12 @@ import cn.nukkit.math.NukkitRandom;
 
 public class PopulatorMineshaft extends Populator {
 
-    /**
-     * Author: Niall Lindsay <Niall7459> Unfinished <WIP>
-     */
+  /**
+   * Author: Niall Lindsay <Niall7459> Unfinished <WIP>
+   */
 
-    @Override
-    public void populate(
-            ChunkManager level,
-            int chunkX,
-            int chunkZ,
-            NukkitRandom random
-    ) {
-        // TODO Auto-generated method stub
-
-    }
-
+  @Override
+  public void populate(ChunkManager level, int chunkX, int chunkZ, NukkitRandom random) {
+    // TODO Auto-generated method stub
+  }
 }

@@ -5,8 +5,5 @@ package cn.nukkit.utils;
  */
 public class ChunkException extends RuntimeException {
 
-    public ChunkException(String message) {
-        super(message);
-    }
-
+  public ChunkException(String message) { super(message); }
 }

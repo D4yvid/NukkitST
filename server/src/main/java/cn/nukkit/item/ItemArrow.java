@@ -5,19 +5,9 @@ package cn.nukkit.item;
  */
 public class ItemArrow extends Item {
 
-    public ItemArrow() {
-        this(0, 1);
-    }
+  public ItemArrow() { this(0, 1); }
 
-    public ItemArrow(Integer meta) {
-        this(meta, 1);
-    }
+  public ItemArrow(Integer meta) { this(meta, 1); }
 
-    public ItemArrow(
-            Integer meta,
-            int count
-    ) {
-        super(ARROW, meta, count, "Arrow");
-    }
-
+  public ItemArrow(Integer meta, int count) { super(ARROW, meta, count, "Arrow"); }
 }

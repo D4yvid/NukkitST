@@ -7,20 +7,18 @@ import cn.nukkit.raknet.protocol.Packet;
  */
 public class UNCONNECTED_PING_OPEN_CONNECTIONS extends UNCONNECTED_PING {
 
-    public static final byte ID = (byte) 0x02;
+  public static final byte ID = (byte)0x02;
+
+  @Override
+  public byte getID() {
+    return ID;
+  }
+
+  public static final class Factory implements Packet.PacketFactory {
 
     @Override
-    public byte getID() {
-        return ID;
+    public Packet create() {
+      return new UNCONNECTED_PING_OPEN_CONNECTIONS();
     }
-
-    public static final class Factory implements Packet.PacketFactory {
-
-        @Override
-        public Packet create() {
-            return new UNCONNECTED_PING_OPEN_CONNECTIONS();
-        }
-
-    }
-
+  }
 }
