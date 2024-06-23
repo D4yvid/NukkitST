@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <unistd.h>
 #include <zlib.h>
 
 #define MIN(a, b)  ((a) < (b) ? (a) : (b))
@@ -39,7 +38,8 @@ JNIEXPORT jbyteArray JNICALL Java_cn_nukkit_natives_ZlibNative_deflate(
   return output_arr;
 }
 
-JNIEXPORT jbyteArray JNICALL
+JNIEXPORT jbyteArray
+ JNICALL
 Java_cn_nukkit_natives_ZlibNative_inflate(JNIEnv *env, jobject this, jbyteArray input)
 {
   jbyteArray output_arr = NULL;

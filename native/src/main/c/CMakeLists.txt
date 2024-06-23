@@ -6,12 +6,13 @@ set(JAVA_JVM_LIBRARY NotNeeded)
 set(JAVA_AWT_INCLUDE_PATH NotNeeded)
 
 find_package(JNI REQUIRED)
+find_package(ZLIB REQUIRED)
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "build/cn/nukkit/natives/libs/${BUILD_ARCH}")
 
 set(Sources "zlib_native.c")
 
-include_directories(${JNI_INCLUDE_DIRS})
+include_directories(${JNI_INCLUDE_DIRS} ${ZLIB_INCLUDE_DIRS})
 
 if (NOT DEFINED STANDALONE_EXECUTABLE)
 	add_library(nukkit
@@ -22,5 +23,5 @@ else()
 endif()
 
 target_link_libraries(nukkit
-    z # ZLIB
+    ${ZLIB_LIBRARIES} # ZLIB
     )

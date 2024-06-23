@@ -12,6 +12,8 @@ public class NativeLibraryLoader {
   private static final LinkedHashMap<String, Path> LOADED_LIBRARIES = new LinkedHashMap<>();
 
   private static boolean isWindows() {
+    System.out.println(System.getProperty("os.name"));
+
     return System.getProperty("os.name").toLowerCase().contains("windows");
   }
 
@@ -82,6 +84,8 @@ public class NativeLibraryLoader {
       var arch = System.getProperty("os.arch");
       var path = Path.of("cn/nukkit/natives/libs", arch,
           getLibraryPrefix() + libraryName + "." + getLibrarySuffix());
+
+      System.out.println(path.toAbsolutePath().toString());
 
       try (var zipFile = new ZipFile(jarLocation)) {
         var entries = (Iterator<? extends ZipEntry>) zipFile.entries().asIterator();
