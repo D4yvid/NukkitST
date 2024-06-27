@@ -18,8 +18,8 @@ build/
 /plugins/
 /logs/
 /native/build
-/app/build
-/app/bin
+/server/build
+/server/bin
 /native/bin
 .gradle
 *.bin
