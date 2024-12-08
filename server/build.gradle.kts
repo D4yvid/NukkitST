@@ -4,6 +4,7 @@ plugins {
     id("java")
     id("io.freefair.lombok") version "8.4"
     id("com.github.johnrengelman.shadow") version "8.1.1"
+    kotlin("jvm")
 }
 
 group = "cn.nukkit"
@@ -38,6 +39,7 @@ dependencies {
     implementation("org.apache.logging.log4j:log4j-core:2.17.2")
     implementation("org.jetbrains:annotations:24.1.0")
     implementation(project(":native"))
+    implementation(kotlin("stdlib-jdk8"))
 }
 
 java {
@@ -53,13 +55,9 @@ tasks.withType(JavaCompile::class.java) {
 tasks {
     shadowJar {
         transform(Log4j2PluginsCacheFileTransformer::class.java)
-	
-
-//		val baseDir = project(":native").layout.buildDirectory;
-//		include("${baseDir}/lib/main/debug/*.so")
 
         manifest {
-            attributes["Main-Class"] = "cn.nukkit.Nukkit"
+            attributes["Main-Class"] = "org.crimsonmc.ApplicationKt"
             attributes["Multi-Release"] = true
         }
     }

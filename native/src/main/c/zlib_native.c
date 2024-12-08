@@ -15,7 +15,7 @@ static bool native_deflate(
 );
 static bool native_inflate(uint8_t *in, size_t in_len, uint8_t **out, size_t *out_len);
 
-JNIEXPORT jbyteArray JNICALL Java_cn_nukkit_natives_ZlibNative_deflate(
+JNIEXPORT jbyteArray JNICALL Java_org_crimsonmc_natives_ZlibNative_deflate(
     JNIEnv *env, jobject this, jbyteArray input, jint compression_level
 )
 {
@@ -40,7 +40,7 @@ JNIEXPORT jbyteArray JNICALL Java_cn_nukkit_natives_ZlibNative_deflate(
 
 JNIEXPORT jbyteArray
  JNICALL
-Java_cn_nukkit_natives_ZlibNative_inflate(JNIEnv *env, jobject this, jbyteArray input)
+Java_org_crimsonmc_natives_ZlibNative_inflate(JNIEnv *env, jobject this, jbyteArray input)
 {
   jbyteArray output_arr = NULL;
   size_t input_len, output_len;
